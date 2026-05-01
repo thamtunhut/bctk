@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phân Tích Tồn Kho POSM HCM – Tháng 4/2026</title>
+<style>
+  :root {
+    --navy: #1a1a2e; --primary: #16213e; --blue: #0f3a5e;
+    --teal: #007a87; --accent: #e94f37; --gold: #f5a623;
+    --green: #27ae60; --red: #c0392b; --purple: #8e44ad;
+    --white: #fff; --lgray: #f5f7fa; --mgray: #bdc3c7; --text: #2c3e50;
+    --card-shadow: 0 2px 12px rgba(0,0,0,.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--lgray); color: var(--text); font-size: 14px; }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    color: #fff; padding: 32px 40px 24px; position: relative; overflow: hidden;
+  }
+  .page-header::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+  }
+  .page-header h1 { font-size: 26px; font-weight: 700; letter-spacing: .3px; }
+  .page-header .sub { color: var(--mgray); font-size: 13px; margin-top: 6px; }
+  .page-header .date-badge {
+    display: inline-block; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+    border-radius: 20px; padding: 4px 14px; font-size: 12px; margin-top: 10px;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1400px; margin: 0 auto; padding: 28px 28px 48px; }
+  .section { margin-bottom: 32px; }
+  .section-title {
+    font-size: 16px; font-weight: 700; color: var(--primary);
+    margin-bottom: 16px; padding-bottom: 8px;
+    border-bottom: 3px solid var(--accent); display: flex; align-items: center; gap: 8px;
+  }
+  .section-title span { background: var(--accent); color: #fff; border-radius: 4px; padding: 2px 8px; font-size: 12px; }
+
+  /* ── KPI CARDS ── */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+  .kpi-card {
+    background: #fff; border-radius: 12px; padding: 18px 16px 14px;
+    box-shadow: var(--card-shadow); border-top: 4px solid var(--teal); position: relative;
+  }
+  .kpi-card.accent  { border-top-color: var(--accent); }
+  .kpi-card.gold    { border-top-color: var(--gold); }
+  .kpi-card.green   { border-top-color: var(--green); }
+  .kpi-card.red     { border-top-color: var(--red); }
+  .kpi-card.purple  { border-top-color: var(--purple); }
+  .kpi-card .label { font-size: 11px; color: var(--mgray); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+  .kpi-card .value { font-size: 26px; font-weight: 800; color: var(--primary); margin: 6px 0 4px; line-height: 1; }
+  .kpi-card .unit  { font-size: 11px; color: var(--mgray); }
+  .kpi-card .delta { font-size: 12px; font-weight: 600; margin-top: 8px; padding: 3px 8px; border-radius: 20px; display: inline-block; }
+  .delta-up   { background: #fdecea; color: var(--red); }
+  .delta-down { background: #e8f8f1; color: var(--green); }
+  .delta-neu  { background: #f0f0f0; color: #666; }
+
+  /* ── GRID 2-COL ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  /* ── CARD ── */
+  .card {
+    background: #fff; border-radius: 12px; padding: 20px;
+    box-shadow: var(--card-shadow);
+  }
+  .card-title { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 14px; }
+
+  /* ── TABLE ── */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--primary); color: #fff; padding: 10px 12px; text-align: left; font-size: 12px; font-weight: 600; }
+  th:first-child { border-radius: 6px 0 0 0; }
+  th:last-child  { border-radius: 0 6px 0 0; }
+  td { padding: 9px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+  tr:nth-child(even) td { background: var(--lgray); }
+  tr:hover td { background: #eef6fb; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .bold { font-weight: 700; }
+  .red-text  { color: var(--red);   font-weight: 700; }
+  .gold-text { color: #c97f00;      font-weight: 700; }
+  .green-text{ color: var(--green); font-weight: 700; }
+  .teal-text { color: var(--teal);  font-weight: 700; }
+
+  /* ── ALERT CARDS ── */
+  .alert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+  .alert-card {
+    border-radius: 10px; padding: 16px 18px;
+    border-left: 5px solid var(--accent); background: #fff;
+    box-shadow: var(--card-shadow);
+  }
+  .alert-card.warning { border-left-color: var(--gold); }
+  .alert-card.info    { border-left-color: var(--teal); }
+  .alert-card.ok      { border-left-color: var(--green); }
+  .alert-card .alert-title { font-weight: 700; font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .alert-card .alert-title .ico { font-size: 16px; }
+  .alert-card ul { padding-left: 16px; }
+  .alert-card li { margin-bottom: 5px; line-height: 1.5; color: var(--text); font-size: 13px; }
+  .alert-card .highlight { color: var(--red); font-weight: 700; }
+  .alert-card .highlight-gold { color: #c97f00; font-weight: 700; }
+  .alert-card .highlight-green { color: var(--green); font-weight: 700; }
+
+  /* ── TREND BAR ── */
+  .trend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .trend-label { width: 110px; font-size: 12px; color: var(--text); flex-shrink: 0; text-align: right; }
+  .trend-bar-wrap { flex: 1; background: #eee; border-radius: 4px; height: 20px; position: relative; }
+  .trend-bar { height: 20px; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 700; color: #fff; }
+  .trend-value { font-size: 12px; font-weight: 700; width: 80px; flex-shrink: 0; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block; border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 700;
+  }
+  .badge-red    { background: #fdecea; color: var(--red); }
+  .badge-gold   { background: #fef9e7; color: #c97f00; }
+  .badge-green  { background: #e8f8f1; color: var(--green); }
+  .badge-blue   { background: #eaf3fb; color: var(--blue); }
+  .badge-purple { background: #f4ecf7; color: var(--purple); }
+  .badge-gray   { background: #f0f0f0; color: #666; }
+
+  /* ── PROGRESS ── */
+  .prog-wrap { background: #eee; border-radius: 4px; height: 8px; }
+  .prog { height: 8px; border-radius: 4px; }
+
+  /* ── SUMMARY BOX ── */
+  .summary-box {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    color: #fff; border-radius: 12px; padding: 24px 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.15);
+  }
+  .summary-box h3 { font-size: 16px; color: var(--gold); margin-bottom: 12px; }
+  .summary-box p  { font-size: 13px; line-height: 1.7; color: #ccc; margin-bottom: 8px; }
+  .summary-box .highlight { color: var(--gold); font-weight: 700; }
+  .summary-box .warning-text { color: #ff8a80; font-weight: 700; }
+
+  /* ── TIMELINE ── */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item { display: flex; gap: 14px; position: relative; padding-bottom: 14px; }
+  .tl-item:not(:last-child)::before {
+    content: ''; position: absolute; left: 14px; top: 28px; bottom: 0; width: 2px; background: #e0e0e0;
+  }
+  .tl-dot {
+    width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;
+  }
+  .tl-content { flex: 1; }
+  .tl-content .tl-title { font-weight: 700; font-size: 13px; margin-bottom: 3px; }
+  .tl-content .tl-desc  { font-size: 12px; color: #666; line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  .footer { text-align: center; font-size: 11px; color: var(--mgray); margin-top: 40px; padding: 16px; }
+
+  /* ── DIVIDER ── */
+  hr.section-divider { border: none; height: 1px; background: #e0e0e0; margin: 8px 0 20px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<div class="page-header">
+  <h1>📦 Phân Tích Tồn Kho POSM HCM — Tháng 4/2026</h1>
+  <div class="sub">Báo cáo tình trạng kho: cảnh báo rủi ro, xu hướng và tín hiệu tích cực</div>
+  <div class="date-badge">📅 Snapshot: 17/04/2026 &nbsp;|&nbsp; 28 tháng dữ liệu (2024-01 → 2026-04)</div>
+</div>
+
+<div class="container">
+
+<!-- ══════════════ 1. TỔNG QUAN ══════════════ -->
+<div class="section">
+  <div class="section-title">📊 Tổng Quan Tháng 4/2026 <span>HIỆN TẠI</span></div>
+  <div class="kpi-grid">
+    <div class="kpi-card teal">
+      <div class="label">Số Lượng Tồn</div>
+      <div class="value">30,310</div>
+      <div class="unit">items</div>
+      <div class="delta delta-down">▼ -2.3% vs T3/2026</div>
+    </div>
+    <div class="kpi-card">
+      <div class="label">Số SKU</div>
+      <div class="value">430</div>
+      <div class="unit">mã hàng</div>
+      <div class="delta delta-down">▼ -3.6% vs T3/2026</div>
+    </div>
+    <div class="kpi-card gold">
+      <div class="label">Giá Trị Tồn Kho</div>
+      <div class="value">5.17</div>
+      <div class="unit">tỷ VND</div>
+      <div class="delta delta-up">▲ +88.7% vs T4/2025</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="label">SL Quá Hạn</div>
+      <div class="value">1,076</div>
+      <div class="unit">items (3.5% tổng)</div>
+      <div class="delta delta-down">▼ -57.1% vs T4/2025</div>
+    </div>
+    <div class="kpi-card red">
+      <div class="label">GT Quá Hạn</div>
+      <div class="value">322.3</div>
+      <div class="unit">triệu VND (6.2%)</div>
+      <div class="delta delta-up">▲ +11.4% vs T3/2026 ⚠</div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="label">SKU Quá Hạn</div>
+      <div class="value">51</div>
+      <div class="unit">mã hàng (11.9%)</div>
+      <div class="delta delta-down">▼ -2 SKU vs T3/2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ 2. SO SÁNH & XU HƯỚNG ══════════════ -->
+<div class="section">
+  <div class="section-title">📈 So Sánh & Xu Hướng</div>
+  <div class="grid-2">
+
+    <!-- Bảng so sánh -->
+    <div class="card">
+      <div class="card-title">So sánh 3 mốc thời gian</div>
+      <table>
+        <thead>
+          <tr><th>Chỉ số</th><th class="num">T4/2025</th><th class="num">T3/2026</th><th class="num">T4/2026</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>SL Tồn</td><td class="num">28,931</td><td class="num">31,033</td><td class="num bold">30,310</td></tr>
+          <tr><td>SKU</td><td class="num">450</td><td class="num">446</td><td class="num bold">430</td></tr>
+          <tr><td>Giá Trị (tỷ)</td><td class="num">2.741</td><td class="num">5.474</td><td class="num bold teal-text">5.174</td></tr>
+          <tr><td>Đơn giá BQ (đ/item)</td><td class="num">94,751</td><td class="num">176,381</td><td class="num bold gold-text">170,694</td></tr>
+          <tr><td>QH SL</td><td class="num red-text">2,508</td><td class="num">1,099</td><td class="num bold green-text">1,076</td></tr>
+          <tr><td>QH GT (triệu)</td><td class="num red-text">408.9</td><td class="num">289.5</td><td class="num bold gold-text">322.3</td></tr>
+          <tr><td>% QH SL</td><td class="num red-text">8.7%</td><td class="num">3.5%</td><td class="num bold green-text">3.5%</td></tr>
+          <tr><td>% QH GT</td><td class="num red-text">14.9%</td><td class="num">5.3%</td><td class="num bold gold-text">6.2%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Xu hướng 3 tháng + biểu đồ quá hạn -->
+    <div class="card">
+      <div class="card-title">Xu hướng 3 tháng gần nhất (đang giảm đều ✓)</div>
+      <div style="margin-bottom:18px;">
+        <div style="font-size:12px;color:#999;margin-bottom:8px;">SL Tồn (max: 32,606)</div>
+        <div class="trend-row"><div class="trend-label">T2/2026</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:100%;background:var(--blue);">32,606</div></div><div class="trend-value teal-text">32,606</div></div>
+        <div class="trend-row"><div class="trend-label">T3/2026</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:95.2%;background:var(--teal);">31,033</div></div><div class="trend-value teal-text">31,033</div></div>
+        <div class="trend-row"><div class="trend-label">T4/2026</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:92.9%;background:var(--green);">30,310</div></div><div class="trend-value green-text">30,310 ▼</div></div>
+      </div>
+      <div style="font-size:12px;color:#999;margin-bottom:8px;">GT Tồn Kho – tỷ VND (max: 5.756)</div>
+      <div class="trend-row"><div class="trend-label">T2/2026</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:100%;background:var(--blue);">5.756</div></div><div class="trend-value teal-text">5.756 tỷ</div></div>
+      <div class="trend-row"><div class="trend-label">T3/2026</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:95.1%;background:var(--teal);">5.474</div></div><div class="trend-value teal-text">5.474 tỷ</div></div>
+      <div class="trend-row"><div class="trend-label">T4/2026</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:89.8%;background:var(--green);">5.174</div></div><div class="trend-value green-text">5.174 tỷ ▼</div></div>
+      <div style="margin-top:14px;padding:10px 12px;background:#e8f8f1;border-radius:8px;font-size:12px;color:var(--green);font-weight:600;">
+        ✓ Kho đang được giải phóng đều đặn — không có dấu hiệu tích lũy bất thường.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ 3. QUÁ HẠN ══════════════ -->
+<div class="section">
+  <div class="section-title">⚠️ Tồn Kho Quá Hạn <span>THEO DÕI SÁT</span></div>
+
+  <!-- Xu hướng QH 6 tháng -->
+  <div class="card" style="margin-bottom:16px;">
+    <div class="card-title">Xu hướng quá hạn 6 tháng gần nhất</div>
+    <table>
+      <thead>
+        <tr><th>Tháng</th><th class="num">QH SL</th><th class="num">% QH SL</th><th class="num">QH GT (tr đ)</th><th class="num">% QH GT</th><th>Nhận xét</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>11/2025</td><td class="num">2,167</td><td class="num red-text">6.0%</td><td class="num">352.6</td><td class="num red-text">7.7%</td><td><span class="badge badge-red">Cao</span></td></tr>
+        <tr><td>12/2025</td><td class="num">1,857</td><td class="num gold-text">4.0%</td><td class="num">354.2</td><td class="num gold-text">5.6%</td><td><span class="badge badge-gold">Giảm</span></td></tr>
+        <tr><td>01/2026</td><td class="num">1,743</td><td class="num gold-text">4.6%</td><td class="num">338.4</td><td class="num gold-text">4.9%</td><td><span class="badge badge-gold">Ổn</span></td></tr>
+        <tr><td>02/2026</td><td class="num">1,107</td><td class="num green-text">3.4%</td><td class="num">292.4</td><td class="num green-text">5.1%</td><td><span class="badge badge-green">Tốt</span></td></tr>
+        <tr><td>03/2026</td><td class="num">1,099</td><td class="num green-text">3.5%</td><td class="num">289.5</td><td class="num green-text">5.3%</td><td><span class="badge badge-green">Tốt</span></td></tr>
+        <tr style="background:#fef9e7;"><td><b>04/2026</b></td><td class="num bold green-text">1,076</td><td class="num bold green-text">3.5%</td><td class="num bold gold-text">322.3</td><td class="num bold gold-text">6.2% ⚠</td><td><span class="badge badge-gold">QH GT tăng nhẹ</span></td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:10px;padding:10px 12px;background:#fef9e7;border-radius:8px;font-size:12px;color:#9a6f00;">
+      ⚠ <b>Lưu ý:</b> Tổng QH SL giảm nhưng QH GT tăng 11.4% so với T3/2026 — do 2 item giá trị cao mới phát sinh quá hạn tại GS9 (iPhone 16 ProMax + PlayStation 5 = 39.4 triệu).
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <!-- QH theo Team -->
+    <div class="card">
+      <div class="card-title">Quá hạn theo Team — Tháng 4/2026</div>
+      <table>
+        <thead>
+          <tr><th>Team</th><th class="num">QH SL</th><th class="num">% QH SL</th><th class="num">QH GT (tr đ)</th><th class="num">% QH GT</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="bold red-text">GS1</td><td class="num red-text">581</td><td class="num red-text">9.3%</td><td class="num">124.0</td><td class="num">5.7%</td></tr>
+          <tr><td>GS3</td><td class="num">303</td><td class="num">2.8%</td><td class="num">17.8</td><td class="num green-text">1.7%</td></tr>
+          <tr><td>GS2</td><td class="num">165</td><td class="num">3.5%</td><td class="num gold-text">78.6</td><td class="num gold-text">8.1%</td></tr>
+          <tr><td class="bold gold-text">GSDR</td><td class="num">22</td><td class="num green-text">0.6%</td><td class="num red-text">51.6</td><td class="num red-text">10.0%</td></tr>
+          <tr><td class="bold gold-text">GS9</td><td class="num green-text">3</td><td class="num green-text">0.1%</td><td class="num red-text">40.1</td><td class="num red-text">8.5%</td></tr>
+          <tr><td class="red-text">PRO</td><td class="num red-text">2</td><td class="num red-text">100%</td><td class="num red-text">10.1</td><td class="num red-text">100%</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:10px;font-size:12px;color:#666;">
+        GS1 nghiêm trọng nhất về SL (9.3%). GSDR &amp; GS9 có %GT quá hạn cao do 2–3 item đặc biệt đắt tiền.
+      </div>
+    </div>
+
+    <!-- QH theo Product (SL) -->
+    <div class="card">
+      <div class="card-title">Top sản phẩm quá hạn — Tỷ lệ % cao nhất</div>
+      <table>
+        <thead>
+          <tr><th>Product</th><th class="num">SL Tổng</th><th class="num">QH SL</th><th class="num">% QH</th><th>Mức độ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="bold red-text">TLBB2 (662)</td><td class="num">119</td><td class="num red-text">113</td><td class="num red-text bold">95.0%</td><td><span class="badge badge-red">Nguy hiểm</span></td></tr>
+          <tr><td class="red-text">JX2 (003)</td><td class="num">101</td><td class="num red-text">81</td><td class="num red-text bold">80.2%</td><td><span class="badge badge-red">Nguy hiểm</span></td></tr>
+          <tr><td class="red-text">JXCTC (162)</td><td class="num">83</td><td class="num red-text">70</td><td class="num red-text bold">84.3%</td><td><span class="badge badge-red">Nguy hiểm</span></td></tr>
+          <tr><td class="red-text">JXF (004)</td><td class="num">83</td><td class="num red-text">63</td><td class="num red-text bold">75.9%</td><td><span class="badge badge-red">Cao</span></td></tr>
+          <tr><td class="red-text">WJX (007)</td><td class="num">89</td><td class="num red-text">60</td><td class="num red-text bold">67.4%</td><td><span class="badge badge-red">Cao</span></td></tr>
+          <tr><td class="gold-text">TTL (113)</td><td class="num">369</td><td class="num">103</td><td class="num gold-text bold">27.9%</td><td><span class="badge badge-gold">Trung bình</span></td></tr>
+          <tr><td class="gold-text">JXM (221)</td><td class="num">753</td><td class="num">200</td><td class="num gold-text bold">26.6%</td><td><span class="badge badge-gold">Trung bình</span></td></tr>
+          <tr><td class="gold-text">CODM (426)</td><td class="num">1,082</td><td class="num">266</td><td class="num gold-text bold">24.6%</td><td><span class="badge badge-gold">Trung bình</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ 4. PHÂN TÍCH THEO TEAM ══════════════ -->
+<div class="section">
+  <div class="section-title">🏢 Phân Tích Theo Team</div>
+  <div class="card">
+    <div class="card-title">Tổng hợp 6 chỉ số theo Team — Tháng 4/2026</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Team</th>
+          <th class="num">SL Tồn</th><th class="num">% SL</th>
+          <th class="num">SKU</th>
+          <th class="num">GT (tỷ)</th><th class="num">% GT</th>
+          <th class="num">Đơn giá BQ</th>
+          <th class="num">% QH SL</th><th class="num">% QH GT</th>
+          <th>Rủi ro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fff3f3;">
+          <td class="bold red-text">GS1</td>
+          <td class="num">6,240</td><td class="num">20.6%</td>
+          <td class="num bold">120</td>
+          <td class="num bold red-text">2.159</td><td class="num bold red-text">41.7%</td>
+          <td class="num bold gold-text">345,961 đ</td>
+          <td class="num red-text">9.3%</td><td class="num">5.7%</td>
+          <td><span class="badge badge-red">Cao nhất</span></td>
+        </tr>
+        <tr>
+          <td class="bold">GS3</td>
+          <td class="num bold">10,933</td><td class="num bold">36.1%</td>
+          <td class="num">105</td>
+          <td class="num">1.043</td><td class="num">20.1%</td>
+          <td class="num">95,394 đ</td>
+          <td class="num green-text">2.8%</td><td class="num green-text">1.7%</td>
+          <td><span class="badge badge-green">Thấp</span></td>
+        </tr>
+        <tr>
+          <td>GS2</td>
+          <td class="num">4,721</td><td class="num">15.6%</td>
+          <td class="num">115</td>
+          <td class="num">0.977</td><td class="num">18.9%</td>
+          <td class="num">206,907 đ</td>
+          <td class="num">3.5%</td><td class="num gold-text">8.1%</td>
+          <td><span class="badge badge-gold">Trung bình</span></td>
+        </tr>
+        <tr>
+          <td>GS9</td>
+          <td class="num">4,637</td><td class="num">15.3%</td>
+          <td class="num">41</td>
+          <td class="num">0.470</td><td class="num">9.1%</td>
+          <td class="num">101,292 đ</td>
+          <td class="num green-text">0.1%</td><td class="num red-text">8.5%</td>
+          <td><span class="badge badge-gold">Trung bình</span></td>
+        </tr>
+        <tr>
+          <td class="bold gold-text">GSDR</td>
+          <td class="num">3,477</td><td class="num">11.5%</td>
+          <td class="num">46</td>
+          <td class="num">0.515</td><td class="num">10.0%</td>
+          <td class="num">148,236 đ</td>
+          <td class="num green-text">0.6%</td><td class="num red-text">10.0%</td>
+          <td><span class="badge badge-gold">Theo dõi</span></td>
+        </tr>
+        <tr>
+          <td class="red-text">PRO</td>
+          <td class="num">2</td><td class="num">—</td>
+          <td class="num">2</td>
+          <td class="num">0.010</td><td class="num">—</td>
+          <td class="num red-text">5,036,364 đ</td>
+          <td class="num red-text">100%</td><td class="num red-text">100%</td>
+          <td><span class="badge badge-red">100% QH</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px;padding:10px 14px;background:#fef9e7;border-radius:8px;font-size:12px;">
+      <b>⚠ GS1:</b> Chiếm 41.7% tổng GT nhưng đơn giá BQ cao nhất (345,961 đ/item) — nếu hàng bị tồn lâu, rủi ro tài chính rất lớn. QH SL hiện ở mức 9.3%, cao nhất hệ thống.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ 5. TOP PRODUCTS ══════════════ -->
+<div class="section">
+  <div class="section-title">🏆 Phân Tích Theo Sản Phẩm</div>
+  <div class="grid-2">
+
+    <!-- Top 10 GT -->
+    <div class="card">
+      <div class="card-title">Top 10 sản phẩm có Giá Trị cao nhất — T4/2026</div>
+      <table>
+        <thead>
+          <tr><th>#</th><th>Product</th><th class="num">GT (tr đ)</th><th class="num">SL</th><th class="num">Đơn giá BQ</th><th>Mới 2026</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td class="bold teal-text">JX2.0 (A99)</td><td class="num bold teal-text">572.0</td><td class="num">2,728</td><td class="num">209,713 đ</td><td><span class="badge badge-blue">Mới</span></td></tr>
+          <tr><td>2</td><td>KTO (658)</td><td class="num bold">330.5</td><td class="num">562</td><td class="num gold-text">587,900 đ</td><td></td></tr>
+          <tr><td>3</td><td>Valorant (465)</td><td class="num">315.2</td><td class="num">3,418</td><td class="num">92,217 đ</td><td></td></tr>
+          <tr><td>4</td><td class="gold-text">TTL (113)</td><td class="num gold-text">313.2</td><td class="num">369</td><td class="num red-text">848,912 đ</td><td></td></tr>
+          <tr><td>5</td><td>Ghost Story (934)</td><td class="num">293.0</td><td class="num">913</td><td class="num">320,966 đ</td><td></td></tr>
+          <tr><td>6</td><td class="teal-text">CFL (A49)</td><td class="num teal-text">266.7</td><td class="num">910</td><td class="num">293,048 đ</td><td><span class="badge badge-blue">Mới</span></td></tr>
+          <tr><td>7</td><td class="teal-text">NRK (A52)</td><td class="num teal-text">211.7</td><td class="num">1,454</td><td class="num">145,596 đ</td><td><span class="badge badge-blue">Mới</span></td></tr>
+          <tr><td>8</td><td>JXM (221)</td><td class="num">202.9</td><td class="num">753</td><td class="num">269,520 đ</td><td></td></tr>
+          <tr><td>9</td><td>MULD (946)</td><td class="num">182.0</td><td class="num">234</td><td class="num red-text">777,778 đ</td><td></td></tr>
+          <tr><td>10</td><td>JX1M (452)</td><td class="num">178.9</td><td class="num">539</td><td class="num">331,727 đ</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Biến động SL -->
+    <div class="card">
+      <div class="card-title">Biến động SL mạnh nhất — T3/2026 → T4/2026</div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:6px;">▲ TĂNG MẠNH (nhập thêm hoặc chưa tiêu thụ)</div>
+        <table>
+          <thead><tr><th>Product</th><th class="num">T3/2026</th><th class="num">T4/2026</th><th class="num">Delta</th></tr></thead>
+          <tbody>
+            <tr><td class="bold red-text">CFL (A49)</td><td class="num">160</td><td class="num bold">910</td><td class="num bold red-text">+750 (+469%)</td></tr>
+            <tr><td class="red-text">ZSM (377)</td><td class="num">165</td><td class="num bold">762</td><td class="num red-text">+597 (+362%)</td></tr>
+            <tr><td>Wild Rift (466)</td><td class="num">27</td><td class="num">217</td><td class="num gold-text">+190 (+704%)</td></tr>
+            <tr><td>Roblox (697)</td><td class="num">0</td><td class="num">300</td><td class="num gold-text">+300 (Mới)</td></tr>
+            <tr><td>PTG (661)</td><td class="num">618</td><td class="num">994</td><td class="num gold-text">+376 (+61%)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px;">▼ GIẢM (đang được tiêu thụ tốt)</div>
+        <table>
+          <thead><tr><th>Product</th><th class="num">T3/2026</th><th class="num">T4/2026</th><th class="num">Delta</th></tr></thead>
+          <tbody>
+            <tr><td class="bold green-text">Valorant (465)</td><td class="num">4,375</td><td class="num">3,418</td><td class="num green-text bold">-957 (-21.9%)</td></tr>
+            <tr><td class="green-text">NTH (A70)</td><td class="num">856</td><td class="num">268</td><td class="num green-text">-588 (-68.7%)</td></tr>
+            <tr><td class="green-text">TFT PC (680)</td><td class="num">1,823</td><td class="num">1,281</td><td class="num green-text">-542 (-29.7%)</td></tr>
+            <tr><td class="green-text">PUBGM (384)</td><td class="num">3,028</td><td class="num">2,741</td><td class="num green-text">-287 (-9.5%)</td></tr>
+            <tr><td class="green-text">NRK (A52)</td><td class="num">1,666</td><td class="num">1,454</td><td class="num green-text">-212 (-12.7%)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ 6. CẢNH BÁO RỦI RO ══════════════ -->
+<div class="section">
+  <div class="section-title">🚨 Cảnh Báo Rủi Ro <span>CẦN XỬ LÝ</span></div>
+  <div class="alert-grid">
+
+    <div class="alert-card">
+      <div class="alert-title"><span class="ico">🔴</span> CANH BÁO 1: RWS (928) — iPhone & PS5 vừa quá hạn</div>
+      <ul>
+        <li><span class="highlight">2,728 items</span> tồn bất động <span class="highlight">10 tháng liên tiếp</span> (7/2025 → 4/2026)</li>
+        <li>Tháng 4/2026 phát sinh quá hạn: <span class="highlight">iPhone 16 ProMax 256GB = 27.7 triệu</span></li>
+        <li>+ <span class="highlight">PlayStation 5 = 11.6 triệu</span> → Tổng QH GT: <span class="highlight">39.4 triệu</span></li>
+        <li>Tổng GT kho RWS: 168.2 triệu — đây là giải thưởng/phần thưởng chưa phân phối</li>
+        <li>Rủi ro: Nếu không có kế hoạch phân phối, QH GT sẽ tiếp tục tăng tháng sau</li>
+      </ul>
+    </div>
+
+    <div class="alert-card">
+      <div class="alert-title"><span class="ico">🔴</span> CẢNH BÁO 2: Nhóm JX (GS1) — Quá hạn kinh niên</div>
+      <ul>
+        <li><b>TLBB2 (662):</b> <span class="highlight">95% SL là quá hạn</span> (113/119 items)</li>
+        <li><b>JXCTC (162):</b> <span class="highlight">84.3% SL quá hạn</span> (70/83 items)</li>
+        <li><b>JX2 (003):</b> <span class="highlight">80.2% SL quá hạn</span> (81/101 items)</li>
+        <li><b>JXF (004):</b> 75.9% quá hạn &nbsp;|&nbsp; <b>WJX (007):</b> 67.4% quá hạn</li>
+        <li>Nhóm JX chiếm <span class="highlight">~38% tổng GT quá hạn</span> của toàn kho</li>
+      </ul>
+    </div>
+
+    <div class="alert-card warning">
+      <div class="alert-title"><span class="ico">🟠</span> CẢNH BÁO 3: Revelation-VN (486) GSDR — Tài sản giá trị rất cao tồn lâu</div>
+      <ul>
+        <li><b>Cúp Livestream BOG Revelation 2023:</b> <span class="highlight-gold">37 triệu/cái</span> — tồn từ 2023</li>
+        <li><b>Charm Cá Voi Revelation:</b> <span class="highlight-gold">12.5 triệu/cái</span></li>
+        <li>Tổng QH GT: <span class="highlight-gold">49.5 triệu</span> (35.5% GT sản phẩm)</li>
+        <li>Đây là vật phẩm event — cần xác nhận lại kế hoạch sử dụng</li>
+      </ul>
+    </div>
+
+    <div class="alert-card warning">
+      <div class="alert-title"><span class="ico">🟠</span> CẢNH BÁO 4: MLB (650) — Tồn bất động 6 tháng</div>
+      <ul>
+        <li>SL: 476 items — <span class="highlight-gold">không thay đổi suốt 6 tháng</span> (11/2025 → 4/2026)</li>
+        <li>QH GT: <span class="highlight-gold">31.4 triệu</span> (36.5% GT sản phẩm)</li>
+        <li>Không có dấu hiệu sẽ được phân phối trong thời gian ngắn</li>
+      </ul>
+    </div>
+
+    <div class="alert-card warning">
+      <div class="alert-title"><span class="ico">🟠</span> CẢNH BÁO 5: CFL (A49) & ZSM (377) — Nhập mạnh chưa rõ tiêu thụ</div>
+      <ul>
+        <li><b>CFL (A49):</b> tăng đột biến <span class="highlight-gold">+469%</span> trong 1 tháng (160 → 910 items)</li>
+        <li><b>ZSM (377):</b> tăng <span class="highlight-gold">+362%</span> (165 → 762 items)</li>
+        <li><b>Roblox (697):</b> xuất hiện 300 items trong tháng 4 (0 → 300)</li>
+        <li>Đây là hàng nhập mới phục vụ event/chiến dịch — cần xác nhận kế hoạch</li>
+        <li>Nếu chưa có kế hoạch phân phối cụ thể → nguy cơ tích lũy tồn kho</li>
+      </ul>
+    </div>
+
+    <div class="alert-card warning">
+      <div class="alert-title"><span class="ico">🟠</span> CẢNH BÁO 6: GS1 — Tập trung hàng premium, rủi ro tài chính cao nhất</div>
+      <ul>
+        <li>GS1 chiếm <span class="highlight-gold">41.7% tổng GT</span> toàn kho (2.16 tỷ/5.17 tỷ)</li>
+        <li>Đơn giá BQ: <span class="highlight-gold">345,961 đ/item</span> — cao nhất hệ thống</li>
+        <li>QH SL: 9.3% — cao nhất các team</li>
+        <li>Nếu hàng GS1 bị tồn/quá hạn sẽ tạo ra thiệt hại tài chính lớn nhất</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════ 7. TÍN HIỆU TÍCH CỰC ══════════════ -->
+<div class="section">
+  <div class="section-title">✅ Tín Hiệu Tích Cực</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Tỷ lệ quá hạn đạt mức thấp nhất lịch sử 28 tháng</div>
+      <div style="margin-bottom:14px;">
+        <div style="font-size:12px;color:#999;margin-bottom:6px;">% QH SL — so sánh các giai đoạn</div>
+        <div class="trend-row"><div class="trend-label">Đỉnh 6/2024</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:100%;background:var(--red);">17.7%</div></div><div class="trend-value red-text">17.7%</div></div>
+        <div class="trend-row"><div class="trend-label">Đỉnh 6/2025</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:66.7%;background:var(--red);">11.8%</div></div><div class="trend-value red-text">11.8%</div></div>
+        <div class="trend-row"><div class="trend-label">11/2025</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:33.9%;background:var(--gold);">6.0%</div></div><div class="trend-value gold-text">6.0%</div></div>
+        <div class="trend-row"><div class="trend-label">T4/2026 (HT)</div><div class="trend-bar-wrap"><div class="trend-bar" style="width:19.8%;background:var(--green);">3.5%</div></div><div class="trend-value green-text bold">3.5% ✓</div></div>
+      </div>
+      <div style="padding:10px 12px;background:#e8f8f1;border-radius:8px;font-size:12px;color:var(--green);font-weight:600;">
+        ✓ Thấp hơn ~5x so với đỉnh điểm 6/2024 và ~3.4x so với đỉnh 2025.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Các tín hiệu tích cực khác</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--green);color:#fff;">✓</div>
+          <div class="tl-content">
+            <div class="tl-title">Kho đang giảm đều 3 tháng liên tiếp</div>
+            <div class="tl-desc">SL: 32,606 → 31,033 → 30,310 | GT: 5.76 → 5.47 → 5.17 tỷ</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--green);color:#fff;">✓</div>
+          <div class="tl-content">
+            <div class="tl-title">GS3 giải phóng kho rất thành công</div>
+            <div class="tl-desc">SL giảm 61% trong 4 tháng (28,161 → 10,933). QH GT giảm 80%.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--green);color:#fff;">✓</div>
+          <div class="tl-content">
+            <div class="tl-title">QH SL giảm 57.1% so với cùng kỳ năm ngoái</div>
+            <div class="tl-desc">T4/2025: 2,508 items QH → T4/2026: 1,076 items QH</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--teal);color:#fff;">↗</div>
+          <div class="tl-content">
+            <div class="tl-title">Valorant, PUBGM, TFT PC đang được tiêu thụ tốt</div>
+            <div class="tl-desc">Giảm lần lượt -22%, -9.5%, -30% so với tháng trước.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--gold);color:#fff;">!</div>
+          <div class="tl-content">
+            <div class="tl-title">Đơn giá BQ đang có xu hướng giảm từ đỉnh</div>
+            <div class="tl-desc">Đỉnh 1/2026: 181,051 đ/item → 4/2026: 170,694 đ/item (-5.7%).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ 8. TÓM TẮT & KHUYẾN NGHỊ ══════════════ -->
+<div class="section">
+  <div class="section-title">📋 Tóm Tắt & Khuyến Nghị</div>
+  <div class="summary-box">
+    <h3>Kết luận tổng thể</h3>
+    <p>Tháng 4/2026, kho POSM HCM không đầy về <span class="highlight">số lượng vật lý</span> (30,310 items ≈ mức bình thường lịch sử), nhưng <span class="highlight">giá trị tài chính cao gấp đôi</span> so với cùng kỳ 2025 do cơ cấu sản phẩm thay đổi: nhóm A-code mới (JX2.0, CFL...) và dòng collector/premium (cúp, phù điêu, giải thưởng lớn) được nhập vào kho. Đơn giá BQ tăng từ 94k → 170k đ/item (+80%).</p>
+    <p>Tín hiệu tích cực: tỷ lệ quá hạn ở mức <span class="highlight">thấp nhất 28 tháng (3.5%)</span>, kho đang giảm đều 3 tháng liên tiếp. Tuy nhiên cần chú ý một số mục tiêu rủi ro cụ thể.</p>
+  </div>
+
+  <div style="margin-top:20px;">
+    <table>
+      <thead>
+        <tr><th style="width:180px;">Hành động</th><th>Nội dung</th><th style="width:120px;">Ưu tiên</th><th style="width:100px;">Phụ trách</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bold red-text">Xử lý ngay</td>
+          <td>Lên kế hoạch phân phối <b>RWS (928)</b> — iPhone 16 ProMax + PS5 vừa quá hạn, 2,728 items tồn 10 tháng chưa động</td>
+          <td><span class="badge badge-red">🔴 Cao nhất</span></td>
+          <td>GS9 / GS1</td>
+        </tr>
+        <tr>
+          <td class="bold red-text">Xử lý ngay</td>
+          <td>Rà soát nhóm JX cũ (TLBB2/JX2/JXCTC/JXF/WJX) tại GS1 — tỷ lệ QH 67–95%, đề xuất thanh lý hoặc event đặc biệt</td>
+          <td><span class="badge badge-red">🔴 Cao nhất</span></td>
+          <td>GS1</td>
+        </tr>
+        <tr>
+          <td class="bold gold-text">Theo dõi sát</td>
+          <td>Xác nhận kế hoạch sử dụng Cúp Livestream Revelation (37M) + Charm Cá Voi (12.5M) tại GSDR — tồn từ 2023</td>
+          <td><span class="badge badge-gold">🟠 Cao</span></td>
+          <td>GSDR</td>
+        </tr>
+        <tr>
+          <td class="bold gold-text">Theo dõi sát</td>
+          <td>Kiểm tra kế hoạch tiêu thụ <b>CFL (A49)</b> và <b>ZSM (377)</b> — vừa nhập mạnh (+469%, +362%), chưa rõ baseline tiêu thụ</td>
+          <td><span class="badge badge-gold">🟠 Cao</span></td>
+          <td>GS2 / GS9</td>
+        </tr>
+        <tr>
+          <td class="bold gold-text">Theo dõi sát</td>
+          <td><b>MLB (650)</b> — 476 items tồn bất động 6 tháng, QH GT 36.5%. Xem xét thanh lý hoặc sử dụng cho sự kiện</td>
+          <td><span class="badge badge-gold">🟠 Trung bình</span></td>
+          <td>GS2</td>
+        </tr>
+        <tr>
+          <td class="bold teal-text">Duy trì</td>
+          <td>Tiếp tục đà giảm kho hiện tại — đặc biệt duy trì tiêu thụ mạnh ở GS3, Valorant, PUBGM, TFT PC</td>
+          <td><span class="badge badge-blue">🔵 Thấp</span></td>
+          <td>Tất cả</td>
+        </tr>
+        <tr>
+          <td class="teal-text">Theo dõi định kỳ</td>
+          <td>Roblox (697) vừa xuất hiện 300 items — xem tháng 5/2026 có tiêu thụ hay tiếp tục tích lũy</td>
+          <td><span class="badge badge-gray">⚪ Thấp</span></td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  Báo cáo tự động từ dữ liệu tồn kho POSM HCM &nbsp;|&nbsp; Snapshot 17/04/2026 &nbsp;|&nbsp; 28 tháng (2024-01 → 2026-04)
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
