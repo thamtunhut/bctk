@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phân Tích Tồn Kho POSM HCM – Tháng 6/2026</title>
+<title>Phân Tích Tồn Kho POSM HCM – Tháng 7/2026</title>
 <style>
   :root {
     --navy: #1a1a2e; --primary: #16213e; --blue: #0f3a5e;
@@ -15,7 +15,6 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--lgray); color: var(--text); font-size: 14px; }
 
-  /* HEADER */
   .page-header {
     background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
     color: #fff; padding: 32px 40px 24px; position: relative; overflow: hidden;
@@ -31,7 +30,6 @@
     border-radius: 20px; padding: 4px 14px; font-size: 12px; margin-top: 10px;
   }
 
-  /* LAYOUT */
   .container { max-width: 1400px; margin: 0 auto; padding: 28px 28px 48px; }
   .section { margin-bottom: 32px; }
   .section-title {
@@ -41,7 +39,6 @@
   }
   .section-title span { background: var(--accent); color: #fff; border-radius: 4px; padding: 2px 8px; font-size: 12px; }
 
-  /* KPI CARDS */
   .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
   .kpi-card {
     background: #fff; border-radius: 12px; padding: 18px 16px 14px;
@@ -60,19 +57,16 @@
   .delta-down { background: #e8f8f1; color: var(--green); }
   .delta-neu  { background: #f0f0f0; color: #666; }
 
-  /* GRID */
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
   @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
 
-  /* CARD */
   .card {
     background: #fff; border-radius: 12px; padding: 20px;
     box-shadow: var(--card-shadow);
   }
   .card-title { font-size: 14px; font-weight: 700; color: var(--primary); margin-bottom: 14px; }
 
-  /* TABLE */
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th { background: var(--primary); color: #fff; padding: 10px 12px; text-align: left; font-size: 12px; font-weight: 600; }
   th:first-child { border-radius: 6px 0 0 0; }
@@ -87,7 +81,6 @@
   .green-text{ color: var(--green); font-weight: 700; }
   .teal-text { color: var(--teal);  font-weight: 700; }
 
-  /* ALERT CARDS */
   .alert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
   .alert-card {
     border-radius: 10px; padding: 16px 18px;
@@ -105,14 +98,12 @@
   .alert-card .highlight-gold { color: #c97f00; font-weight: 700; }
   .alert-card .highlight-green { color: var(--green); font-weight: 700; }
 
-  /* TREND BAR */
   .trend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
   .trend-label { width: 110px; font-size: 12px; color: var(--text); flex-shrink: 0; text-align: right; }
   .trend-bar-wrap { flex: 1; background: #eee; border-radius: 4px; height: 20px; position: relative; }
   .trend-bar { height: 20px; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 700; color: #fff; }
   .trend-value { font-size: 12px; font-weight: 700; width: 80px; flex-shrink: 0; }
 
-  /* BADGE */
   .badge {
     display: inline-block; border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 700;
   }
@@ -123,11 +114,9 @@
   .badge-purple { background: #f4ecf7; color: var(--purple); }
   .badge-gray   { background: #f0f0f0; color: #666; }
 
-  /* PROGRESS */
   .prog-wrap { background: #eee; border-radius: 4px; height: 8px; }
   .prog { height: 8px; border-radius: 4px; }
 
-  /* SUMMARY BOX */
   .summary-box {
     background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
     color: #fff; border-radius: 12px; padding: 24px 28px;
@@ -138,7 +127,6 @@
   .summary-box .highlight { color: var(--gold); font-weight: 700; }
   .summary-box .warning-text { color: #ff8a80; font-weight: 700; }
 
-  /* TIMELINE */
   .timeline { display: flex; flex-direction: column; gap: 0; }
   .tl-item { display: flex; gap: 14px; position: relative; padding-bottom: 14px; }
   .tl-item:not(:last-child)::before {
@@ -152,13 +140,8 @@
   .tl-content .tl-title { font-weight: 700; font-size: 13px; margin-bottom: 3px; }
   .tl-content .tl-desc  { font-size: 12px; color: #666; line-height: 1.5; }
 
-  /* FOOTER */
   .footer { text-align: center; font-size: 11px; color: var(--mgray); margin-top: 40px; padding: 16px; }
-
-  /* DIVIDER */
   hr.section-divider { border: none; height: 1px; background: #e0e0e0; margin: 8px 0 20px; }
-
-  /* NOTE BOX */
   .note-box {
     background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px;
     padding: 12px 16px; font-size: 12px; color: #795548; margin-bottom: 16px;
@@ -169,56 +152,56 @@
 
 <!-- HEADER -->
 <div class="page-header">
-  <h1>Phân Tích Tồn Kho POSM HCM &mdash; Tháng 6/2026</h1>
+  <h1>Phân Tích Tồn Kho POSM HCM &mdash; Tháng 7/2026</h1>
   <div class="sub">Báo cáo tình trạng kho: cảnh báo rủi ro, xu hướng và tín hiệu tích cực</div>
-  <div class="date-badge">Snapshot: 30/06/2026 &nbsp;|&nbsp; 30 tháng dữ liệu (2024-01 &rarr; 2026-06)</div>
+  <div class="date-badge">Snapshot: 31/07/2026 &nbsp;|&nbsp; 31 tháng dữ liệu (2024-01 &rarr; 2026-07)</div>
 </div>
 
 <div class="container">
 
 <!-- ══════════════ 1. TỔNG QUAN ══════════════ -->
 <div class="section">
-  <div class="section-title">Tổng Quan Tháng 6/2026 <span>HIỆN TẠI</span></div>
+  <div class="section-title">Tổng Quan Tháng 7/2026 <span>HIỆN TẠI</span></div>
   <div class="kpi-grid">
     <div class="kpi-card" style="border-top-color:var(--teal)">
       <div class="label">Số Lượng Tồn</div>
-      <div class="value">49,048</div>
+      <div class="value">54,357</div>
       <div class="unit">items</div>
-      <div class="delta delta-down">&#9660; &minus;16.5% vs T5/2026</div>
+      <div class="delta delta-up">&#9650; +10.8% vs T6/2026</div>
     </div>
     <div class="kpi-card">
       <div class="label">Số SKU</div>
-      <div class="value">467</div>
+      <div class="value">587</div>
       <div class="unit">mã hàng</div>
-      <div class="delta delta-down">&#9660; &minus;19.3% vs T5/2026</div>
+      <div class="delta delta-up">&#9650; +25.7% vs T6/2026</div>
     </div>
     <div class="kpi-card gold">
       <div class="label">Giá Trị Tồn Kho</div>
-      <div class="value">6.187</div>
+      <div class="value">6.578</div>
       <div class="unit">tỷ VND</div>
-      <div class="delta delta-down">&#9660; &minus;13.1% vs T5/2026</div>
+      <div class="delta delta-up">&#9650; +6.3% vs T6/2026</div>
     </div>
-    <div class="kpi-card green">
+    <div class="kpi-card red">
       <div class="label">SL Quá Hạn</div>
-      <div class="value">725</div>
-      <div class="unit">items (1.48% tổng)</div>
-      <div class="delta delta-down">&#9660; &minus;2.7% vs T5/2026</div>
+      <div class="value">1,568</div>
+      <div class="unit">items (2.88% tổng)</div>
+      <div class="delta delta-up">&#9650; +116.3% vs T6/2026</div>
     </div>
     <div class="kpi-card" style="border-top-color:var(--purple)">
       <div class="label">SKU Quá Hạn</div>
-      <div class="value">52</div>
+      <div class="value">77</div>
       <div class="unit">mã hàng</div>
-      <div class="delta delta-up">&#9650; +1 vs T5/2026</div>
+      <div class="delta delta-up">&#9650; +25 vs T6/2026</div>
     </div>
     <div class="kpi-card" style="border-top-color:var(--red)">
       <div class="label">GT Quá Hạn</div>
-      <div class="value">310.1</div>
-      <div class="unit">triệu VND (5.01% tổng)</div>
-      <div class="delta delta-up">&#9650; +6.0% vs T5/2026</div>
+      <div class="value">529.3</div>
+      <div class="unit">triệu VND (8.05% tổng)</div>
+      <div class="delta delta-up">&#9650; +70.6% vs T6/2026</div>
     </div>
   </div>
   <div style="margin-top:14px;" class="note-box">
-    <strong>Ghi chú cấu trúc Team:</strong> Tháng 6/2026 xuất hiện 2 team mới: <strong>CTS</strong> (4,265 items, 4 SKU, GT=79.5M) và <strong>GDO</strong> (279 items, 3 SKU, GT=9.4M). Ngược lại, <strong>GSSEA</strong> không còn xuất hiện trong snapshot 30/06. Tổng số team trong T6: 11 team (CTS, FGS, GDO, GS1, GS2, GS3, GS9, GSDR, GSES, PRO, RES).
+    <strong>Cảnh báo QH bùng nổ:</strong> T7/2026 là tháng QH tăng mạnh nhất trong năm 2026. GT QH đạt <strong>529.3M VND (8.05%)</strong> — cao nhất kể từ T6/2025 (526.2M). Nguyên nhân chính: JXM tăng từ 200 lên 645 items QH (+445), Ghost Story từ 5 lên 171 (+166), Revelation-VN từ 36 lên 131 (+95), và MLB (650) mới vào QH 100% với 124 items. Cùng 11 team như T6/2026 (CTS, FGS, GDO, GS1, GS2, GS3, GS9, GSDR, GSES, PRO, RES).
   </div>
 </div>
 
@@ -232,9 +215,9 @@
         <thead>
           <tr>
             <th>Chỉ số</th>
-            <th class="num">T6/2025</th>
-            <th class="num">T5/2026</th>
+            <th class="num">T7/2025</th>
             <th class="num">T6/2026</th>
+            <th class="num">T7/2026</th>
             <th class="num">YoY (%)</th>
             <th class="num">MoM (%)</th>
           </tr>
@@ -242,106 +225,106 @@
         <tbody>
           <tr>
             <td class="bold">SL Tồn (items)</td>
-            <td class="num">30,906</td>
-            <td class="num">58,732</td>
-            <td class="num bold teal-text">49,048</td>
-            <td class="num red-text">+58.7%</td>
-            <td class="num green-text">&minus;16.5%</td>
+            <td class="num">33,781</td>
+            <td class="num">49,048</td>
+            <td class="num bold teal-text">54,357</td>
+            <td class="num red-text">+60.9%</td>
+            <td class="num red-text">+10.8%</td>
           </tr>
           <tr>
             <td class="bold">SKU</td>
-            <td class="num">332</td>
-            <td class="num">579</td>
-            <td class="num bold teal-text">467</td>
-            <td class="num red-text">+40.7%</td>
-            <td class="num green-text">&minus;19.3%</td>
+            <td class="num">383</td>
+            <td class="num">467</td>
+            <td class="num bold teal-text">587</td>
+            <td class="num red-text">+53.3%</td>
+            <td class="num red-text">+25.7%</td>
           </tr>
           <tr>
             <td class="bold">Giá Trị (tỷ VND)</td>
-            <td class="num">3.374</td>
-            <td class="num">7.122</td>
-            <td class="num bold teal-text">6.187</td>
-            <td class="num red-text">+83.4%</td>
-            <td class="num green-text">&minus;13.1%</td>
+            <td class="num">3.757</td>
+            <td class="num">6.187</td>
+            <td class="num bold teal-text">6.578</td>
+            <td class="num red-text">+75.1%</td>
+            <td class="num red-text">+6.3%</td>
           </tr>
           <tr>
             <td class="bold">SL Quá Hạn</td>
-            <td class="num gold-text">3,640</td>
-            <td class="num gold-text">745</td>
-            <td class="num bold green-text">725</td>
-            <td class="num green-text">&minus;80.1%</td>
-            <td class="num green-text">&minus;2.7%</td>
+            <td class="num gold-text">3,698</td>
+            <td class="num green-text">725</td>
+            <td class="num bold red-text">1,568</td>
+            <td class="num green-text">&minus;57.6%</td>
+            <td class="num red-text">+116.3%</td>
           </tr>
           <tr>
             <td class="bold">SKU Quá Hạn</td>
-            <td class="num gold-text">97</td>
-            <td class="num">51</td>
-            <td class="num bold gold-text">52</td>
-            <td class="num green-text">&minus;46.4%</td>
-            <td class="num gold-text">+1 mã</td>
+            <td class="num gold-text">98</td>
+            <td class="num">52</td>
+            <td class="num bold red-text">77</td>
+            <td class="num green-text">&minus;21.4%</td>
+            <td class="num red-text">+25 mã</td>
           </tr>
           <tr>
             <td class="bold">GT Quá Hạn (M VND)</td>
-            <td class="num gold-text">526.2</td>
-            <td class="num gold-text">292.6</td>
-            <td class="num bold gold-text">310.1</td>
-            <td class="num green-text">&minus;41.1%</td>
-            <td class="num red-text">+6.0%</td>
+            <td class="num gold-text">421.0</td>
+            <td class="num">310.1</td>
+            <td class="num bold red-text">529.3</td>
+            <td class="num red-text">+25.7%</td>
+            <td class="num red-text">+70.6%</td>
           </tr>
           <tr>
             <td class="bold">Đơn giá BQ (VND/item)</td>
-            <td class="num">109,163</td>
-            <td class="num">121,260</td>
-            <td class="num bold teal-text">126,147</td>
-            <td class="num red-text">+15.6%</td>
-            <td class="num red-text">+4.0%</td>
+            <td class="num">111,228</td>
+            <td class="num">126,147</td>
+            <td class="num bold teal-text">121,025</td>
+            <td class="num red-text">+8.8%</td>
+            <td class="num green-text">&minus;4.1%</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="card">
-      <div class="card-title">Nhận xét xu hướng 6 tháng (T1/2026 &rarr; T6/2026)</div>
+      <div class="card-title">Nhận xét xu hướng 6 tháng (T2/2026 &rarr; T7/2026)</div>
       <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-dot" style="background:#c0392b;color:#fff">01</div>
-          <div class="tl-content">
-            <div class="tl-title">T1/2026 &mdash; GT cao nhất lịch sử: 38,257 items / 6.93 tỷ VND</div>
-            <div class="tl-desc">Sau Tết, tồn kho còn nhiều. QH: 1,743 items (4.6%), 338M.</div>
-          </div>
-        </div>
         <div class="tl-item">
           <div class="tl-dot" style="background:#e67e22;color:#fff">02</div>
           <div class="tl-content">
-            <div class="tl-title">T2/2026 &mdash; Giảm đều: 32,606 items / 5.76 tỷ VND</div>
-            <div class="tl-desc">Xuất kho ổn định. QH giảm mạnh: 1,107 items (3.4%), 292M.</div>
+            <div class="tl-title">T2/2026 &mdash; 32,606 items / 5.76 tỷ VND</div>
+            <div class="tl-desc">Xuất kho ổn định. QH: 1,107 items (3.4%), 292.4M.</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot" style="background:#f39c12;color:#fff">03</div>
           <div class="tl-content">
-            <div class="tl-title">T3/2026 &mdash; Ổn định: 31,033 items / 5.47 tỷ VND</div>
-            <div class="tl-desc">SL tiếp tục giảm nhẹ. QH: 1,099 items (3.5%), 289M.</div>
+            <div class="tl-title">T3/2026 &mdash; 31,033 items / 5.47 tỷ VND</div>
+            <div class="tl-desc">Giảm nhẹ đều. QH: 1,099 items (3.5%), 289.5M.</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot" style="background:#27ae60;color:#fff">04</div>
           <div class="tl-content">
             <div class="tl-title">T4/2026 &mdash; Đáy 2026: 30,310 items / 5.17 tỷ VND</div>
-            <div class="tl-desc">QH: 1,076 items (3.5%), 322M.</div>
+            <div class="tl-desc">SL thấp nhất 31 tháng. QH: 1,076 items (3.5%), 322.3M.</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot" style="background:#e94f37;color:#fff">05</div>
           <div class="tl-content">
             <div class="tl-title">T5/2026 &mdash; Đỉnh nhập hàng: 58,732 items / 7.12 tỷ VND</div>
-            <div class="tl-desc">Tăng vọt +93.7% SL. QH giảm xuống 745 items (1.27%) &mdash; thấp nhất 29 tháng.</div>
+            <div class="tl-desc">Tăng vọt +93.7% SL. QH giảm xuống 745 items (1.3%) &mdash; thấp nhất 31 tháng.</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot" style="background:#007a87;color:#fff">06</div>
           <div class="tl-content">
             <div class="tl-title">T6/2026 &mdash; Xuất kho sau đỉnh: 49,048 items / 6.19 tỷ VND</div>
-            <div class="tl-desc">Giảm &minus;9,684 items (&minus;16.5%). QH SL tiếp tục giảm về 725 items (1.48%), nhưng GT QH tăng nhẹ +17.5M do hàng đắt tiền mới vào danh sách quá hạn. CTS và GDO là 2 team mới xuất hiện.</div>
+            <div class="tl-desc">Giảm &minus;9,684 items (&minus;16.5%). QH SL tiếp tục giảm về 725 items (1.5%) &mdash; chuỗi 6 tháng giảm liên tiếp.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:#c0392b;color:#fff">07</div>
+          <div class="tl-content">
+            <div class="tl-title">T7/2026 &mdash; QH bùng nổ: 54,357 items / 6.58 tỷ VND</div>
+            <div class="tl-desc">SL tăng +5,309 (+10.8%) do GS3 nhập thêm. QH SL tăng vọt lên 1,568 items (2.88%) &mdash; phá vỡ chuỗi 6 tháng giảm. GT QH = 529.3M &mdash; cao nhất năm 2026.</div>
           </div>
         </div>
       </div>
@@ -353,104 +336,102 @@
 <div class="section">
   <div class="section-title">Tồn Kho Quá Hạn <span>THEO DÕI</span></div>
 
-  <!-- Trend bars -->
   <div class="grid-2" style="margin-bottom:20px">
     <div class="card">
-      <div class="card-title">Xu hướng SL Quá Hạn (6 tháng)</div>
-      <div class="trend-row">
-        <div class="trend-label">T1/2026</div>
-        <div class="trend-bar-wrap">
-          <div class="trend-bar" style="width:100%;background:var(--red)">1,743</div>
-        </div>
-        <div class="trend-value red-text">4.6%</div>
-      </div>
+      <div class="card-title">Xu hướng SL Quá Hạn (6 tháng: T2–T7/2026)</div>
       <div class="trend-row">
         <div class="trend-label">T2/2026</div>
         <div class="trend-bar-wrap">
-          <div class="trend-bar" style="width:63.5%;background:var(--gold)">1,107</div>
+          <div class="trend-bar" style="width:70.6%;background:var(--gold)">1,107</div>
         </div>
         <div class="trend-value gold-text">3.4%</div>
       </div>
       <div class="trend-row">
         <div class="trend-label">T3/2026</div>
         <div class="trend-bar-wrap">
-          <div class="trend-bar" style="width:63.1%;background:var(--gold)">1,099</div>
+          <div class="trend-bar" style="width:70.1%;background:var(--gold)">1,099</div>
         </div>
         <div class="trend-value gold-text">3.5%</div>
       </div>
       <div class="trend-row">
         <div class="trend-label">T4/2026</div>
         <div class="trend-bar-wrap">
-          <div class="trend-bar" style="width:61.7%;background:var(--gold)">1,076</div>
+          <div class="trend-bar" style="width:68.6%;background:var(--gold)">1,076</div>
         </div>
         <div class="trend-value gold-text">3.5%</div>
       </div>
       <div class="trend-row">
         <div class="trend-label">T5/2026</div>
         <div class="trend-bar-wrap">
-          <div class="trend-bar" style="width:42.7%;background:var(--green)">745</div>
+          <div class="trend-bar" style="width:47.5%;background:var(--green)">745</div>
         </div>
         <div class="trend-value green-text">1.3%</div>
       </div>
       <div class="trend-row">
         <div class="trend-label">T6/2026</div>
         <div class="trend-bar-wrap">
-          <div class="trend-bar" style="width:41.6%;background:var(--green)">725</div>
+          <div class="trend-bar" style="width:46.2%;background:var(--green)">725</div>
         </div>
         <div class="trend-value green-text">1.5%</div>
       </div>
+      <div class="trend-row">
+        <div class="trend-label">T7/2026</div>
+        <div class="trend-bar-wrap">
+          <div class="trend-bar" style="width:100%;background:var(--red)">1,568</div>
+        </div>
+        <div class="trend-value red-text">2.9%</div>
+      </div>
     </div>
     <div class="card">
-      <div class="card-title">Xu hướng GT Quá Hạn (6 tháng)</div>
-      <div class="trend-row">
-        <div class="trend-label">T1/2026</div>
-        <div class="trend-bar-wrap">
-          <div class="trend-bar" style="width:100%;background:var(--red)">338.4M</div>
-        </div>
-        <div class="trend-value red-text">4.9%</div>
-      </div>
+      <div class="card-title">Xu hướng GT Quá Hạn (6 tháng: T2–T7/2026)</div>
       <div class="trend-row">
         <div class="trend-label">T2/2026</div>
         <div class="trend-bar-wrap">
-          <div class="trend-bar" style="width:86.4%;background:var(--gold)">292.4M</div>
+          <div class="trend-bar" style="width:55.3%;background:var(--gold)">292.4M</div>
         </div>
         <div class="trend-value gold-text">5.1%</div>
       </div>
       <div class="trend-row">
         <div class="trend-label">T3/2026</div>
         <div class="trend-bar-wrap">
-          <div class="trend-bar" style="width:85.5%;background:var(--gold)">289.5M</div>
+          <div class="trend-bar" style="width:54.7%;background:var(--gold)">289.5M</div>
         </div>
         <div class="trend-value gold-text">5.3%</div>
       </div>
       <div class="trend-row">
         <div class="trend-label">T4/2026</div>
         <div class="trend-bar-wrap">
-          <div class="trend-bar" style="width:95.2%;background:var(--red)">322.3M</div>
+          <div class="trend-bar" style="width:60.9%;background:var(--gold)">322.3M</div>
         </div>
-        <div class="trend-value red-text">6.2%</div>
+        <div class="trend-value gold-text">6.2%</div>
       </div>
       <div class="trend-row">
         <div class="trend-label">T5/2026</div>
         <div class="trend-bar-wrap">
-          <div class="trend-bar" style="width:86.5%;background:var(--gold)">292.6M</div>
+          <div class="trend-bar" style="width:55.3%;background:var(--green)">292.6M</div>
         </div>
-        <div class="trend-value gold-text">4.1%</div>
+        <div class="trend-value green-text">4.1%</div>
       </div>
       <div class="trend-row">
         <div class="trend-label">T6/2026</div>
         <div class="trend-bar-wrap">
-          <div class="trend-bar" style="width:91.7%;background:var(--red)">310.1M</div>
+          <div class="trend-bar" style="width:58.6%;background:var(--gold)">310.1M</div>
         </div>
-        <div class="trend-value red-text">5.0%</div>
+        <div class="trend-value gold-text">5.0%</div>
+      </div>
+      <div class="trend-row">
+        <div class="trend-label">T7/2026</div>
+        <div class="trend-bar-wrap">
+          <div class="trend-bar" style="width:100%;background:var(--red)">529.3M</div>
+        </div>
+        <div class="trend-value red-text">8.0%</div>
       </div>
     </div>
   </div>
 
-  <!-- QH by Team & QH by Product -->
   <div class="grid-2">
     <div class="card">
-      <div class="card-title">Quá Hạn theo Team (T6/2026)</div>
+      <div class="card-title">Quá Hạn theo Team (T7/2026)</div>
       <table>
         <thead>
           <tr>
@@ -464,43 +445,35 @@
         </thead>
         <tbody>
           <tr>
-            <td class="bold">GS1</td>
-            <td class="num bold red-text">401</td>
-            <td class="num red-text">8.86%</td>
+            <td class="bold red-text">GS1</td>
+            <td class="num bold red-text">896</td>
+            <td class="num red-text">16.8%</td>
+            <td class="num">19</td>
+            <td class="num bold red-text">183.7</td>
+            <td><span class="badge badge-red">NGHIÊM TRỌNG</span></td>
+          </tr>
+          <tr>
+            <td class="bold">GSDR</td>
+            <td class="num">317</td>
+            <td class="num gold-text">4.2%</td>
             <td class="num">13</td>
-            <td class="num bold red-text">95.37</td>
+            <td class="num bold red-text">183.6</td>
             <td><span class="badge badge-red">CAO</span></td>
           </tr>
           <tr>
             <td class="bold">GS2</td>
-            <td class="num">175</td>
-            <td class="num gold-text">2.89%</td>
-            <td class="num">22</td>
-            <td class="num gold-text">78.89</td>
-            <td><span class="badge badge-gold">TRUNG BÌNH</span></td>
-          </tr>
-          <tr>
-            <td class="bold">GSDR</td>
-            <td class="num">56</td>
-            <td class="num gold-text">0.71%</td>
-            <td class="num">6</td>
-            <td class="num bold red-text">71.99</td>
-            <td><span class="badge badge-gold">TRUNG BÌNH</span></td>
-          </tr>
-          <tr>
-            <td class="bold">GS9</td>
-            <td class="num green-text">4</td>
-            <td class="num green-text">0.08%</td>
-            <td class="num">4</td>
-            <td class="num gold-text">40.22</td>
+            <td class="num">210</td>
+            <td class="num gold-text">3.8%</td>
+            <td class="num">26</td>
+            <td class="num gold-text">82.6</td>
             <td><span class="badge badge-gold">TRUNG BÌNH</span></td>
           </tr>
           <tr>
             <td class="bold">GS3</td>
-            <td class="num">87</td>
-            <td class="num green-text">0.48%</td>
-            <td class="num">5</td>
-            <td class="num">13.61</td>
+            <td class="num">105</td>
+            <td class="num green-text">0.45%</td>
+            <td class="num">8</td>
+            <td class="num">66.2</td>
             <td><span class="badge badge-green">THẤP</span></td>
           </tr>
           <tr>
@@ -508,8 +481,16 @@
             <td class="num red-text">2</td>
             <td class="num red-text">100.0%</td>
             <td class="num">2</td>
-            <td class="num">10.07</td>
+            <td class="num">10.1</td>
             <td><span class="badge badge-red">CAO (100%)</span></td>
+          </tr>
+          <tr>
+            <td class="bold">GS9</td>
+            <td class="num green-text">38</td>
+            <td class="num green-text">0.6%</td>
+            <td class="num">9</td>
+            <td class="num green-text">3.1</td>
+            <td><span class="badge badge-green">THẤP</span></td>
           </tr>
           <tr>
             <td class="bold">CTS</td>
@@ -553,17 +534,20 @@
           </tr>
           <tr style="background:#f5f7fa">
             <td class="bold">TỔNG</td>
-            <td class="num bold">725</td>
-            <td class="num gold-text">1.48%</td>
-            <td class="num bold">52</td>
-            <td class="num bold">310.15</td>
+            <td class="num bold">1,568</td>
+            <td class="num red-text bold">2.88%</td>
+            <td class="num bold">77</td>
+            <td class="num bold red-text">529.3</td>
             <td></td>
           </tr>
         </tbody>
       </table>
+      <div style="margin-top:10px;font-size:11px;color:var(--mgray)">
+        <em>GS1 và GSDR cùng chiếm <strong>69.4%</strong> tổng GT quá hạn (183.7M + 183.6M = 367.3M / 529.3M). GS3 QH SL thấp (0.45%) dù chiếm 43% tổng SL kho. PRO: 100% QH liên tiếp từ T4/2026 (4 tháng).</em>
+      </div>
     </div>
     <div class="card">
-      <div class="card-title">Quá Hạn theo Product &mdash; Top 10 SL QH (T6/2026)</div>
+      <div class="card-title">Quá Hạn theo Product &mdash; Top 10 SL QH (T7/2026)</div>
       <table>
         <thead>
           <tr>
@@ -575,69 +559,69 @@
         </thead>
         <tbody>
           <tr>
-            <td class="bold">221 JXM</td>
-            <td class="num bold red-text">200</td>
-            <td class="num red-text">24.1%</td>
-            <td class="num">11.00</td>
+            <td class="bold red-text">221 JXM</td>
+            <td class="num bold red-text">645</td>
+            <td class="num red-text">77.8%</td>
+            <td class="num bold">78.7</td>
+          </tr>
+          <tr>
+            <td class="bold">934 Ghost Story</td>
+            <td class="num red-text">171</td>
+            <td class="num red-text">12.0%</td>
+            <td class="num bold red-text">103.9</td>
+          </tr>
+          <tr>
+            <td class="bold">486 Revelation-VN</td>
+            <td class="num">131</td>
+            <td class="num gold-text">8.8%</td>
+            <td class="num bold red-text">78.4</td>
+          </tr>
+          <tr>
+            <td class="bold">650 MLB</td>
+            <td class="num">124</td>
+            <td class="num red-text">100.0%</td>
+            <td class="num gold-text">44.8</td>
           </tr>
           <tr>
             <td class="bold">113 TTL</td>
-            <td class="num red-text">103</td>
-            <td class="num red-text">29.8%</td>
-            <td class="num">16.59</td>
-          </tr>
-          <tr>
-            <td class="bold">662 TLBB2</td>
-            <td class="num gold-text">73</td>
-            <td class="num red-text">56.6%</td>
-            <td class="num">10.83</td>
+            <td class="num">103</td>
+            <td class="num red-text">30.2%</td>
+            <td class="num">16.6</td>
           </tr>
           <tr>
             <td class="bold">426 CODM</td>
             <td class="num">50</td>
             <td class="num gold-text">11.0%</td>
-            <td class="num">8.28</td>
+            <td class="num">8.3</td>
           </tr>
           <tr>
-            <td class="bold">688 TLBB2</td>
-            <td class="num">49</td>
-            <td class="num gold-text">12.1%</td>
-            <td class="num">8.03</td>
-          </tr>
-          <tr>
-            <td class="bold">486 Revelation-VN</td>
-            <td class="num">36</td>
-            <td class="num gold-text">5.3%</td>
-            <td class="num bold red-text">69.90</td>
+            <td class="bold">688 TLBB</td>
+            <td class="num">38</td>
+            <td class="num gold-text">10.2%</td>
+            <td class="num">7.9</td>
           </tr>
           <tr>
             <td class="bold">003 JX2</td>
             <td class="num">31</td>
             <td class="num red-text">96.9%</td>
-            <td class="num">23.61</td>
+            <td class="num">23.6</td>
           </tr>
           <tr>
             <td class="bold">162 JXCTC</td>
             <td class="num">30</td>
             <td class="num red-text">100.0%</td>
-            <td class="num">4.74</td>
-          </tr>
-          <tr>
-            <td class="bold">680 TFT PC</td>
-            <td class="num">25</td>
-            <td class="num green-text">1.9%</td>
-            <td class="num">4.46</td>
+            <td class="num">4.7</td>
           </tr>
           <tr>
             <td class="bold">004 JXF</td>
             <td class="num">23</td>
             <td class="num red-text">92.0%</td>
-            <td class="num">19.42</td>
+            <td class="num">19.4</td>
           </tr>
         </tbody>
       </table>
       <div style="margin-top:10px;font-size:11px;color:var(--mgray)">
-        <em>Lưu ý: 162 JXCTC (100%), 003 JX2 (96.9%), 004 JXF (92.0%), 662 TLBB2 (56.6%) có tỷ lệ QH cực cao. GT QH lớn nhất: 486 Revelation-VN (69.9M) &mdash; chỉ 36 items nhưng giá cao.</em>
+        <em>JXM tăng QH từ 200 (T6) lên 645 (T7) &mdash; +445 items trong 1 tháng: nguyên nhân hàng tồn kho cũ vượt hạn lưu. MLB (650): mới vào QH 100% (124/124 items). 934 Ghost Story có GT QH cao nhất: 103.9M. WJX (007): 19/19 items 100% QH (25.3M) &mdash; không được liệt kê nhưng cần xử lý khẩn.</em>
       </div>
     </div>
   </div>
@@ -645,14 +629,14 @@
 
 <!-- ══════════════ 4. PHÂN TÍCH THEO TEAM ══════════════ -->
 <div class="section">
-  <div class="section-title">Phân Tích Theo Team <span>T6/2026</span></div>
+  <div class="section-title">Phân Tích Theo Team <span>T7/2026</span></div>
   <div class="card">
     <table>
       <thead>
         <tr>
           <th>Team</th>
           <th class="num">SL Tồn</th>
-          <th class="num">Delta vs T5</th>
+          <th class="num">Delta vs T6</th>
           <th class="num">SKU</th>
           <th class="num">GT (triệu VND)</th>
           <th class="num">Đơn giá BQ</th>
@@ -666,76 +650,76 @@
       <tbody>
         <tr>
           <td class="bold">GS3</td>
-          <td class="num bold">18,163</td>
-          <td class="num gold-text">&minus;6,316</td>
-          <td class="num">125</td>
-          <td class="num">1,676.5</td>
-          <td class="num">92,304</td>
-          <td class="num">87</td>
-          <td class="num green-text">0.48%</td>
-          <td class="num">5</td>
-          <td class="num">13.6</td>
+          <td class="num bold">23,366</td>
+          <td class="num red-text">+5,203</td>
+          <td class="num">150</td>
+          <td class="num">2,058.8</td>
+          <td class="num">88,113</td>
+          <td class="num">105</td>
+          <td class="num green-text">0.45%</td>
+          <td class="num">8</td>
+          <td class="num">66.2</td>
           <td><span class="badge badge-green">THẤP</span></td>
         </tr>
         <tr>
-          <td class="bold">GSDR</td>
-          <td class="num">7,878</td>
-          <td class="num gold-text">&minus;1,209</td>
-          <td class="num">56</td>
-          <td class="num">729.8</td>
-          <td class="num">92,635</td>
-          <td class="num">56</td>
-          <td class="num gold-text">0.71%</td>
-          <td class="num">6</td>
-          <td class="num red-text">72.0</td>
-          <td><span class="badge badge-gold">TRUNG BÌNH</span></td>
+          <td class="bold red-text">GS1</td>
+          <td class="num">5,324</td>
+          <td class="num red-text">+799</td>
+          <td class="num">100</td>
+          <td class="num bold red-text">1,503.4</td>
+          <td class="num">282,453</td>
+          <td class="num red-text">896</td>
+          <td class="num red-text bold">16.8%</td>
+          <td class="num">19</td>
+          <td class="num red-text">183.7</td>
+          <td><span class="badge badge-red">NGHIÊM TRỌNG</span></td>
         </tr>
         <tr>
           <td class="bold">GS2</td>
-          <td class="num">6,058</td>
-          <td class="num red-text">+701</td>
-          <td class="num">119</td>
-          <td class="num">1,055.5</td>
-          <td class="num">174,237</td>
-          <td class="num">175</td>
-          <td class="num gold-text">2.89%</td>
-          <td class="num">22</td>
-          <td class="num gold-text">78.9</td>
+          <td class="num">5,594</td>
+          <td class="num green-text">&minus;464</td>
+          <td class="num">152</td>
+          <td class="num">1,065.6</td>
+          <td class="num">190,483</td>
+          <td class="num">210</td>
+          <td class="num gold-text">3.8%</td>
+          <td class="num">26</td>
+          <td class="num gold-text">82.6</td>
           <td><span class="badge badge-gold">TRUNG BÌNH</span></td>
         </tr>
         <tr>
-          <td class="bold">GS9</td>
-          <td class="num">5,150</td>
-          <td class="num gold-text">&minus;2,067</td>
-          <td class="num">52</td>
-          <td class="num">557.5</td>
-          <td class="num">108,247</td>
-          <td class="num green-text">4</td>
-          <td class="num green-text">0.08%</td>
-          <td class="num">4</td>
-          <td class="num gold-text">40.2</td>
-          <td><span class="badge badge-gold">TRUNG BÌNH</span></td>
-        </tr>
-        <tr>
-          <td class="bold">GS1</td>
-          <td class="num">4,525</td>
-          <td class="num gold-text">&minus;668</td>
-          <td class="num">88</td>
-          <td class="num bold red-text">1,573.4</td>
-          <td class="num">347,718</td>
-          <td class="num red-text">401</td>
-          <td class="num red-text bold">8.86%</td>
+          <td class="bold">GSDR</td>
+          <td class="num">7,473</td>
+          <td class="num green-text">&minus;405</td>
+          <td class="num">84</td>
+          <td class="num">877.3</td>
+          <td class="num">117,398</td>
+          <td class="num">317</td>
+          <td class="num gold-text">4.2%</td>
           <td class="num">13</td>
-          <td class="num red-text">95.4</td>
+          <td class="num bold red-text">183.6</td>
           <td><span class="badge badge-red">CAO</span></td>
         </tr>
         <tr>
-          <td class="bold">CTS</td>
-          <td class="num red-text">4,265</td>
-          <td class="num red-text">+4,265 <span class="badge badge-blue">MỚI</span></td>
-          <td class="num">4</td>
-          <td class="num">79.5</td>
-          <td class="num">18,647</td>
+          <td class="bold">GS9</td>
+          <td class="num">6,235</td>
+          <td class="num red-text">+1,085</td>
+          <td class="num">72</td>
+          <td class="num">623.3</td>
+          <td class="num">99,965</td>
+          <td class="num green-text">38</td>
+          <td class="num green-text">0.6%</td>
+          <td class="num">9</td>
+          <td class="num green-text">3.1</td>
+          <td><span class="badge badge-green">THẤP</span></td>
+        </tr>
+        <tr>
+          <td class="bold">RES</td>
+          <td class="num">1,108</td>
+          <td class="num green-text">&minus;385</td>
+          <td class="num">9</td>
+          <td class="num">177.9</td>
+          <td class="num">160,543</td>
           <td class="num green-text">0</td>
           <td class="num green-text">0.0%</td>
           <td class="num">0</td>
@@ -744,11 +728,11 @@
         </tr>
         <tr>
           <td class="bold">GSES</td>
-          <td class="num">1,230</td>
-          <td class="num gold-text">&minus;1,970</td>
-          <td class="num">7</td>
-          <td class="num">260.5</td>
-          <td class="num">211,795</td>
+          <td class="num">706</td>
+          <td class="num green-text">&minus;524</td>
+          <td class="num">9</td>
+          <td class="num">143.0</td>
+          <td class="num">202,484</td>
           <td class="num green-text">0</td>
           <td class="num green-text">0.0%</td>
           <td class="num">0</td>
@@ -756,12 +740,12 @@
           <td><span class="badge badge-green">THẤP</span></td>
         </tr>
         <tr>
-          <td class="bold">RES</td>
-          <td class="num">1,493</td>
-          <td class="num gold-text">&minus;244</td>
-          <td class="num">9</td>
-          <td class="num">221.3</td>
-          <td class="num">148,225</td>
+          <td class="bold">CTS</td>
+          <td class="num">4,265</td>
+          <td class="num delta-neu" style="padding:2px 6px;border-radius:4px">0</td>
+          <td class="num">4</td>
+          <td class="num">79.5</td>
+          <td class="num">18,648</td>
           <td class="num green-text">0</td>
           <td class="num green-text">0.0%</td>
           <td class="num">0</td>
@@ -771,10 +755,10 @@
         <tr>
           <td class="bold">GDO</td>
           <td class="num">279</td>
-          <td class="num red-text">+279 <span class="badge badge-blue">MỚI</span></td>
+          <td class="num delta-neu" style="padding:2px 6px;border-radius:4px">0</td>
           <td class="num">3</td>
-          <td class="num">9.4</td>
-          <td class="num">33,667</td>
+          <td class="num">26.1</td>
+          <td class="num">93,666</td>
           <td class="num green-text">0</td>
           <td class="num green-text">0.0%</td>
           <td class="num">0</td>
@@ -782,22 +766,9 @@
           <td><span class="badge badge-green">THẤP</span></td>
         </tr>
         <tr>
-          <td class="bold red-text">PRO</td>
-          <td class="num">2</td>
-          <td class="num delta-neu">0</td>
-          <td class="num">2</td>
-          <td class="num">10.1</td>
-          <td class="num">5,036,364</td>
-          <td class="num red-text">2</td>
-          <td class="num red-text bold">100.0%</td>
-          <td class="num">2</td>
-          <td class="num">10.1</td>
-          <td><span class="badge badge-red">CAO (100%)</span></td>
-        </tr>
-        <tr>
           <td class="bold">FGS</td>
           <td class="num">5</td>
-          <td class="num gold-text">&minus;5</td>
+          <td class="num delta-neu" style="padding:2px 6px;border-radius:4px">0</td>
           <td class="num">2</td>
           <td class="num">13.6</td>
           <td class="num">2,720,000</td>
@@ -807,23 +778,36 @@
           <td class="num">0</td>
           <td><span class="badge badge-green">THẤP</span></td>
         </tr>
+        <tr>
+          <td class="bold red-text">PRO</td>
+          <td class="num">2</td>
+          <td class="num delta-neu" style="padding:2px 6px;border-radius:4px">0</td>
+          <td class="num">2</td>
+          <td class="num">10.1</td>
+          <td class="num">5,036,364</td>
+          <td class="num red-text">2</td>
+          <td class="num red-text bold">100.0%</td>
+          <td class="num">2</td>
+          <td class="num">10.1</td>
+          <td><span class="badge badge-red">CAO (100%)</span></td>
+        </tr>
         <tr style="background:var(--lgray)">
           <td class="bold">TỔNG</td>
-          <td class="num bold">49,048</td>
-          <td class="num gold-text bold">&minus;9,684</td>
-          <td class="num bold">467</td>
-          <td class="num bold">6,187.1</td>
-          <td class="num">126,147</td>
-          <td class="num bold">725</td>
-          <td class="num gold-text bold">1.48%</td>
-          <td class="num bold">52</td>
-          <td class="num bold">310.2</td>
+          <td class="num bold">54,357</td>
+          <td class="num red-text bold">+5,309</td>
+          <td class="num bold">587</td>
+          <td class="num bold">6,578.5</td>
+          <td class="num">121,025</td>
+          <td class="num bold">1,568</td>
+          <td class="num red-text bold">2.88%</td>
+          <td class="num bold">77</td>
+          <td class="num bold red-text">529.3</td>
           <td></td>
         </tr>
       </tbody>
     </table>
     <div style="margin-top:10px;font-size:12px;color:var(--mgray)">
-      <em>Ghi chú: GSSEA không còn xuất hiện trong T6/2026 (biến mất hoàn toàn khỏi snapshot). CTS (4,265 items, 4 SKU) và GDO (279 items, 3 SKU) là 2 team mới. GS1 có đơn giá BQ cao nhất: 347,718 VND/item &mdash; tổng GT kho GS1 vẫn cao nhất dù SL giảm. GSDR: GT QH cao (72M) không tương xứng SL QH thấp (56 items) &mdash; phản ánh hàng giá trị cao bị quá hạn.</em>
+      <em>GS3 tăng +5,203 items (Valorant +2,094, PUBGM +988) nhưng chỉ 0.45% QH &mdash; quản lý kho tốt. GS1 đơn giá cao nhất (282,453 VND/item) &mdash; GT kho 1,503.4M. GSDR: tỷ lệ GT QH 20.9% cao nhất (183.6M / 877.3M) dù SL QH chỉ 317 items &mdash; hàng giá trị cao bị quá hạn. PRO: 100% QH liên tiếp từ T4/2026 (4 tháng, 10.1M).</em>
     </div>
   </div>
   <div style="margin-top:16px">
@@ -832,10 +816,10 @@
         <div class="card-title">Nhận xét GS1</div>
         <div class="timeline">
           <div class="tl-item">
-            <div class="tl-dot" style="background:var(--red);color:#fff;font-size:10px">8.9%</div>
+            <div class="tl-dot" style="background:var(--red);color:#fff;font-size:10px">16.8%</div>
             <div class="tl-content">
-              <div class="tl-title">Tỷ lệ QH cao nhất: 8.86% (401/4,525 items)</div>
-              <div class="tl-desc">GT kho vẫn cao nhất (1.57 tỷ VND), đơn giá cao nhất 347,718 VND/item. QH GT = 95.4M, chiếm 30.7% tổng QH_GT toàn kho. SL giảm &minus;668 vs T5, QH giảm &minus;100 items &mdash; tiến độ cải thiện chậm.</div>
+              <div class="tl-title">Tỷ lệ QH SL cao nhất: 16.8% (896/5,324 items)</div>
+              <div class="tl-desc">GT kho 1,503.4M, đơn giá 282,453 VND/item. QH GT = 183.7M (34.7% tổng GT QH toàn kho). JXM chiếm 645/896 QH items (72%). Nhóm JX cũ (JX2, JXCTC, JXF, WJX) là 103 items còn lại. SL tăng +799 vs T6 nhưng QH tăng mạnh hơn.</div>
             </div>
           </div>
         </div>
@@ -844,22 +828,22 @@
         <div class="card-title">Nhận xét GSDR</div>
         <div class="timeline">
           <div class="tl-item">
-            <div class="tl-dot" style="background:var(--gold);color:#fff;font-size:10px">72M</div>
+            <div class="tl-dot" style="background:var(--red);color:#fff;font-size:10px">20.9%</div>
             <div class="tl-content">
-              <div class="tl-title">GT QH tăng cao: 71.99M VND (từ 51.6M T5)</div>
-              <div class="tl-desc">GSDR có QH_SL chỉ 56 items (0.71%) nhưng GT QH tăng lên 72M (+20.4M so T5). Bình quân mỗi item QH GSDR: 1,285,536 VND &mdash; hàng giá trị cao. Cần xem xét ngay tình trạng 56 items này.</div>
+              <div class="tl-title">GT QH tỷ lệ cao nhất: 20.9% (183.6M / 877.3M)</div>
+              <div class="tl-desc">2 product chính: Ghost Story 171 items (103.9M) và Revelation-VN 131 items (78.4M). Bình quân GT/item QH của GSDR: 579,049 VND &mdash; hàng giá trị rất cao. SL giảm &minus;405 vs T6 nhưng QH tăng 317 (từ 56 T6).</div>
             </div>
           </div>
         </div>
       </div>
       <div class="card">
-        <div class="card-title">Nhận xét CTS &amp; GDO</div>
+        <div class="card-title">Nhận xét GS3 &amp; GS9</div>
         <div class="timeline">
           <div class="tl-item">
-            <div class="tl-dot" style="background:var(--blue);color:#fff;font-size:10px">MỚI</div>
+            <div class="tl-dot" style="background:var(--green);color:#fff;font-size:10px">OK</div>
             <div class="tl-content">
-              <div class="tl-title">2 Team mới trong T6/2026</div>
-              <div class="tl-desc">CTS: 4,265 items / 4 SKU / GT=79.5M (đơn giá 18,647 VND/item &mdash; hàng POSM số lượng lớn, giá thấp). GDO: 279 items / 3 SKU / GT=9.4M. Cả hai không có hàng quá hạn. GSSEA từ T5 không còn xuất hiện trong T6.</div>
+              <div class="tl-title">GS3 nhập thêm hàng, kiểm soát QH tốt</div>
+              <div class="tl-desc">GS3 tăng +5,203 items (23,366 tổng, chiếm 43% kho) nhưng chỉ 105 items QH (0.45%). GS9: tăng +1,085 items, QH chỉ 38 items (0.6%, GT QH 3.1M) &mdash; kiểm soát tốt. Cả 2 team không có rủi ro QH đáng kể.</div>
             </div>
           </div>
         </div>
@@ -870,10 +854,10 @@
 
 <!-- ══════════════ 5. PHÂN TÍCH THEO PRODUCT ══════════════ -->
 <div class="section">
-  <div class="section-title">Phân Tích Theo Product <span>T6/2026</span></div>
+  <div class="section-title">Phân Tích Theo Product <span>T7/2026</span></div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title">Top 10 Giá Trị Tồn Kho Cao Nhất (T6/2026)</div>
+      <div class="card-title">Top 10 Giá Trị Tồn Kho Cao Nhất (T7/2026)</div>
       <table>
         <thead>
           <tr>
@@ -889,13 +873,21 @@
           <tr>
             <td class="bold teal-text">1</td>
             <td class="bold">465 Valorant</td>
-            <td class="num bold">8,825</td>
-            <td class="num">32</td>
-            <td class="num bold">523.3</td>
-            <td class="num green-text">0</td>
+            <td class="num bold">10,919</td>
+            <td class="num">36</td>
+            <td class="num bold">526.1</td>
+            <td class="num green-text">16</td>
           </tr>
           <tr>
             <td class="bold">2</td>
+            <td class="bold">384 PUBGM</td>
+            <td class="num">5,046</td>
+            <td class="num">30</td>
+            <td class="num bold">501.4</td>
+            <td class="num green-text">7</td>
+          </tr>
+          <tr>
+            <td class="bold">3</td>
             <td class="bold">A99 JX2.0</td>
             <td class="num">2,303</td>
             <td class="num">11</td>
@@ -903,163 +895,143 @@
             <td class="num green-text">0</td>
           </tr>
           <tr>
-            <td class="bold">3</td>
+            <td class="bold gold-text">4</td>
             <td class="bold">934 Ghost Story</td>
-            <td class="num">4,099</td>
-            <td class="num">28</td>
-            <td class="num bold">404.5</td>
-            <td class="num">5</td>
-          </tr>
-          <tr>
-            <td class="bold">4</td>
-            <td class="bold">384 PUBGM</td>
-            <td class="num">4,058</td>
-            <td class="num">25</td>
-            <td class="num bold">358.0</td>
-            <td class="num">7</td>
+            <td class="num">1,421</td>
+            <td class="num">30</td>
+            <td class="num bold">360.2</td>
+            <td class="num bold red-text">171</td>
           </tr>
           <tr>
             <td class="bold">5</td>
-            <td class="bold">A49 CFL</td>
-            <td class="num">983</td>
-            <td class="num">15</td>
-            <td class="num bold">237.1</td>
-            <td class="num green-text">0</td>
+            <td class="bold">680 TFT PC</td>
+            <td class="num">1,675</td>
+            <td class="num">22</td>
+            <td class="num bold">285.5</td>
+            <td class="num">25</td>
           </tr>
           <tr>
             <td class="bold">6</td>
-            <td class="bold">697 Roblox</td>
-            <td class="num">1,493</td>
-            <td class="num">9</td>
-            <td class="num bold">221.3</td>
+            <td class="bold">A49 CFL</td>
+            <td class="num">1,657</td>
+            <td class="num">20</td>
+            <td class="num bold">270.7</td>
             <td class="num green-text">0</td>
           </tr>
           <tr>
-            <td class="bold">7</td>
-            <td class="bold">680 TFT PC</td>
-            <td class="num">1,306</td>
-            <td class="num">21</td>
-            <td class="num bold">214.5</td>
-            <td class="num gold-text">25</td>
+            <td class="bold gold-text">7</td>
+            <td class="bold">486 Revelation-VN</td>
+            <td class="num">1,483</td>
+            <td class="num">14</td>
+            <td class="num bold">269.7</td>
+            <td class="num bold red-text">131</td>
           </tr>
           <tr>
             <td class="bold">8</td>
-            <td class="bold">946 MULD</td>
-            <td class="num">401</td>
-            <td class="num">10</td>
-            <td class="num bold">207.1</td>
+            <td class="bold">002 JX1</td>
+            <td class="num">224</td>
+            <td class="num">8</td>
+            <td class="num bold">223.6</td>
             <td class="num green-text">0</td>
           </tr>
           <tr>
             <td class="bold">9</td>
-            <td class="bold">452 JX1M</td>
-            <td class="num">297</td>
-            <td class="num">16</td>
-            <td class="num bold">197.6</td>
-            <td class="num">4</td>
+            <td class="bold">A70 NTH</td>
+            <td class="num">2,071</td>
+            <td class="num">19</td>
+            <td class="num bold">221.6</td>
+            <td class="num green-text">0</td>
           </tr>
           <tr>
-            <td class="bold gold-text">10</td>
-            <td class="bold">009 FS</td>
-            <td class="num">102</td>
-            <td class="num">4</td>
-            <td class="num bold">192.9</td>
+            <td class="bold">10</td>
+            <td class="bold">946 MULD</td>
+            <td class="num">562</td>
+            <td class="num">15</td>
+            <td class="num bold">220.8</td>
             <td class="num green-text">0</td>
           </tr>
         </tbody>
       </table>
       <div style="margin-top:8px;font-size:11px;color:var(--mgray)">
-        <em>Valorant (523M) giữ vị trí đầu. JX2.0 lên thứ 2 (416M). Ghost Story (404M) vào top 3. Đáng chú ý: 009 FS vào top 10 với 102 items nhưng GT 192.9M &mdash; đơn giá trung bình 1,891,176 VND/item.</em>
+        <em>Valorant (526M) và PUBGM (501M) dẫn đầu. JX2.0 giữ vị trí 3 (415.9M). Ghost Story tụt xuống 4 do xuất kho &minus;2,678 items. Revelation-VN vào top 7 (269.7M) — đáng chú ý do tỷ lệ QH 8.8% (131 items). LOL 679 lần đầu tiên vào nhóm GT cao: 2,097 items, 196.0M.</em>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">Biến động SL lớn nhất &mdash; T5 &rarr; T6/2026</div>
+      <div class="card-title">Biến động SL lớn nhất &mdash; T6 &rarr; T7/2026</div>
       <table>
         <thead>
           <tr>
             <th>Product</th>
-            <th class="num">SL T5</th>
             <th class="num">SL T6</th>
+            <th class="num">SL T7</th>
             <th class="num">Thay đổi</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="bold">CTS <em>(team mới)</em></td>
-            <td class="num">0</td>
-            <td class="num bold">4,265</td>
-            <td class="num green-text bold">+4,265 <span class="badge badge-blue">MỚI</span></td>
-          </tr>
-          <tr>
-            <td class="bold">384 PUBGM</td>
-            <td class="num">8,560</td>
-            <td class="num bold">4,058</td>
-            <td class="num gold-text">&minus;4,502</td>
+            <td class="bold">934 Ghost Story</td>
+            <td class="num">4,099</td>
+            <td class="num bold">1,421</td>
+            <td class="num green-text bold">&minus;2,678 (&minus;65.3%)</td>
           </tr>
           <tr>
             <td class="bold">465 Valorant</td>
-            <td class="num">9,913</td>
-            <td class="num bold">8,825</td>
-            <td class="num gold-text">&minus;1,088</td>
+            <td class="num">8,825</td>
+            <td class="num bold">10,919</td>
+            <td class="num red-text">+2,094 (+23.7%)</td>
           </tr>
           <tr>
-            <td class="bold">928 RWS</td>
-            <td class="num">2,728</td>
-            <td class="num bold">2,728</td>
-            <td class="num delta-neu" style="padding:2px 6px;border-radius:4px">0</td>
-          </tr>
-          <tr>
-            <td class="bold">A24 CookieRun <em>(GSSEA)</em></td>
-            <td class="num">2,450</td>
-            <td class="num bold">0</td>
-            <td class="num gold-text">&minus;2,450 <span class="badge badge-gray">BIẾN MẤT</span></td>
-          </tr>
-          <tr>
-            <td class="bold">A15 DREAM-VXPHL</td>
-            <td class="num">1,997</td>
-            <td class="num bold">1,903</td>
-            <td class="num gold-text">&minus;94</td>
+            <td class="bold">384 PUBGM</td>
+            <td class="num">4,058</td>
+            <td class="num bold">5,046</td>
+            <td class="num red-text">+988 (+24.3%)</td>
           </tr>
           <tr>
             <td class="bold">A70 NTH</td>
-            <td class="num">2,471</td>
-            <td class="num bold">1,283</td>
-            <td class="num gold-text">&minus;1,188</td>
-          </tr>
-          <tr>
-            <td class="bold">934 Ghost Story</td>
-            <td class="num">4,075</td>
-            <td class="num bold">4,099</td>
-            <td class="num teal-text">+24</td>
-          </tr>
-          <tr>
-            <td class="bold">GSES <em>(net &minus;1,970)</em></td>
-            <td class="num">3,200</td>
-            <td class="num bold">1,230</td>
-            <td class="num gold-text">&minus;1,970</td>
-          </tr>
-          <tr>
-            <td class="bold">GS9 <em>(net &minus;2,067)</em></td>
-            <td class="num">7,217</td>
-            <td class="num bold">5,150</td>
-            <td class="num gold-text">&minus;2,067</td>
+            <td class="num">1,283</td>
+            <td class="num bold">2,071</td>
+            <td class="num red-text">+788 (+61.4%)</td>
           </tr>
           <tr>
             <td class="bold">A49 CFL</td>
-            <td class="num">3,290</td>
-            <td class="num bold">983</td>
-            <td class="num gold-text">&minus;2,307</td>
+            <td class="num">983</td>
+            <td class="num bold">1,657</td>
+            <td class="num red-text">+674 (+68.6%)</td>
           </tr>
           <tr>
-            <td class="bold">GS3 <em>(net &minus;6,316)</em></td>
-            <td class="num">24,479</td>
-            <td class="num bold">18,163</td>
-            <td class="num gold-text">&minus;6,316</td>
+            <td class="bold">GSES <em>(team)</em></td>
+            <td class="num">1,230</td>
+            <td class="num bold">706</td>
+            <td class="num green-text">&minus;524 (&minus;42.6%)</td>
+          </tr>
+          <tr>
+            <td class="bold">680 TFT PC</td>
+            <td class="num">1,306</td>
+            <td class="num bold">1,675</td>
+            <td class="num red-text">+369 (+28.2%)</td>
+          </tr>
+          <tr>
+            <td class="bold">697 Roblox</td>
+            <td class="num">1,493</td>
+            <td class="num bold">1,108</td>
+            <td class="num green-text">&minus;385 (&minus;25.8%)</td>
+          </tr>
+          <tr>
+            <td class="bold">946 MULD</td>
+            <td class="num">401</td>
+            <td class="num bold">562</td>
+            <td class="num red-text">+161 (+40.1%)</td>
+          </tr>
+          <tr>
+            <td class="bold">A99 JX2.0</td>
+            <td class="num">2,303</td>
+            <td class="num bold">2,303</td>
+            <td class="num delta-neu" style="padding:2px 6px;border-radius:4px">0</td>
           </tr>
         </tbody>
       </table>
       <div style="margin-top:10px;font-size:11px;color:var(--mgray)">
-        <em>PUBGM xuất kho mạnh nhất (&minus;4,502). GS3 xuất &minus;6,316 tổng. CFL giảm &minus;2,307. GSSEA biến mất hoàn toàn. CTS lần đầu xuất hiện +4,265 items. Ghost Story ổn định (chỉ +24). RWS giữ nguyên 2,728 items.</em>
+        <em>Ghost Story xuất kho mạnh nhất: &minus;2,678 items (&minus;65.3%) &mdash; nhưng 171 items còn lại đã bị quá hạn. Valorant tăng +2,094 (nhập thêm). NTH (+788) và CFL (+674) tăng đáng kể. LOL (679) xuất hiện nổi bật với 2,097 items (196M), chưa có T6 để so sánh chính xác.</em>
       </div>
     </div>
   </div>
@@ -1070,100 +1042,101 @@
   <div class="section-title">Cảnh Báo Rủi Ro <span>ƯU TIÊN XỬ LÝ</span></div>
   <div class="alert-grid">
     <div class="alert-card">
-      <div class="alert-title"><span class="ico">&#9888;</span> GS1 &mdash; Tỷ lệ QH cao nhất: 8.86%</div>
+      <div class="alert-title"><span class="ico">&#9888;</span> JXM (221) &mdash; QH tăng đột biến từ 200 lên 645 items (+445)</div>
       <ul>
-        <li>401 items quá hạn / 4,525 tổng (8.86%), GT quá hạn: <span class="highlight">95.37M VND</span></li>
-        <li>Chiếm 30.7% tổng giá trị tồn quá hạn toàn kho</li>
-        <li>JXM: 200 items QH (24.1%), TTL: 103 items QH (29.8%) &mdash; 2 product chính</li>
-        <li>Từ T5 đến T6: QH chỉ giảm &minus;100 items &mdash; tốc độ giải quyết QH quá chậm so SL QH còn lại</li>
+        <li>T6/2026: 200/829 items QH (24.1%, GT QH 11M). T7/2026: <span class="highlight">645/829 items QH (77.8%, GT QH 78.7M)</span></li>
+        <li>SL tổng JXM giữ nguyên 829 &mdash; nghĩa là không có hàng mới ra vào, chỉ hàng cũ ngày càng vượt hạn lưu</li>
+        <li>Tăng +445 items QH trong 1 tháng &mdash; chiếm 52.8% tổng mức tăng QH toàn kho</li>
+        <li>Cần quyết định khẩn: xuất kho, trả NCC hoặc tiêu hủy toàn bộ JXM trước T8/2026</li>
       </ul>
     </div>
     <div class="alert-card">
-      <div class="alert-title"><span class="ico">&#9888;</span> 486 Revelation-VN &mdash; GT QH cao nhất: 69.9M VND</div>
+      <div class="alert-title"><span class="ico">&#9888;</span> GS1 &mdash; Tỷ lệ QH SL cao nhất: 16.8%, GT QH 183.7M</div>
       <ul>
-        <li>Chỉ 36 items quá hạn (5.3% SL) nhưng GT QH = <span class="highlight">69.9M VND</span> &mdash; cao nhất trong tất cả product</li>
-        <li>Đơn giá trung bình item QH: ~1,942,000 VND/item &mdash; hàng giá trị rất cao</li>
-        <li>Thuộc nhóm GSDR (vào QH từ T6). Đây là rủi ro tài chính lớn nhất trong tháng</li>
-        <li>Cần xác định nguyên nhân và có phương án xử lý ngay trong T7/2026</li>
+        <li>896/5,324 items QH (16.8%) &mdash; cao nhất toàn kho, chiếm 57.1% tổng SL QH</li>
+        <li>GT QH = <span class="highlight">183.7M VND</span> &mdash; chiếm 34.7% tổng GT QH toàn kho</li>
+        <li>7 product QH: JXM (645, 78.7M), WJX (19 items 100%, 25.3M), JX2 (31, 96.9%, 23.6M), JXF (23, 92%, 19.4M), TTL (103, 30.2%, 16.6M), JX1M (45, 16.7%, 15.2M), JXCTC (30, 100%, 4.7M)</li>
+        <li>Nhóm JX cũ chưa được xử lý dứt điểm sau nhiều tháng &mdash; rủi ro leo thang</li>
       </ul>
     </div>
     <div class="alert-card">
-      <div class="alert-title"><span class="ico">&#9888;</span> Nhóm JX cũ &mdash; tỷ lệ QH cực cao, kéo dài nhiều tháng</div>
+      <div class="alert-title"><span class="ico">&#9888;</span> GSDR &mdash; GT QH 20.9% (183.6M) &mdash; tỷ lệ cao nhất</div>
       <ul>
-        <li>003 JX2: <span class="highlight">96.9% quá hạn</span> (31/32 items, GT QH: 23.6M) &mdash; giảm từ 61 xuống 31 nhưng vẫn gần 100%</li>
-        <li>162 JXCTC: <span class="highlight">100% quá hạn</span> (30/30 items, GT QH: 4.7M) &mdash; không có tiến triển so T5</li>
-        <li>004 JXF: <span class="highlight">92.0% quá hạn</span> (23/25 items, GT QH: 19.4M)</li>
-        <li>007 WJX: 47.6% quá hạn (10/21 items, GT QH: 10.9M) &mdash; cải thiện so T5 (78.4%)</li>
-        <li>662 TLBB2: 56.6% quá hạn (73/129 items) &mdash; tình trạng tương tự T5</li>
-        <li>Tổng nhóm JX+TLBB2: ~167 items QH, GT ~83M VND &mdash; cần quyết định tiêu hủy hoặc trả NCC</li>
+        <li>317 items QH (4.2% SL) nhưng GT QH = <span class="highlight">183.6M VND (20.9% GT GSDR)</span></li>
+        <li>Ghost Story: 171 items mới vào QH (từ 5 T6), GT QH = <span class="highlight">103.9M</span> &mdash; cao nhất trong tất cả product</li>
+        <li>Revelation-VN: 131 items QH (tăng từ 36 T6), GT QH = 78.4M &mdash; đơn giá ~598,305 VND/item QH</li>
+        <li>Cần xem xét ngay: hàng Ghost Story và Revelation-VN tại GSDR có thể tiếp tục tăng QH tháng sau</li>
+      </ul>
+    </div>
+    <div class="alert-card">
+      <div class="alert-title"><span class="ico">&#9888;</span> Nhóm 100% QH &mdash; MLB, WJX, JXCTC, PRO</div>
+      <ul>
+        <li><strong>650 MLB</strong>: <span class="highlight">124/124 items (100% QH)</span>, GT QH = 44.8M &mdash; mới vào QH hoàn toàn trong T7</li>
+        <li><strong>007 WJX</strong>: 19/19 items (100% QH), GT QH = 25.3M &mdash; kéo dài nhiều tháng</li>
+        <li><strong>162 JXCTC</strong>: 30/30 items (100% QH), GT QH = 4.7M &mdash; không có tiến triển</li>
+        <li><strong>PRO</strong>: 2/2 items (100% QH, 10.1M) &mdash; liên tiếp từ T4/2026 (4 tháng). Đơn giá 5,036,364 VND/item</li>
+        <li>Tổng nhóm 100% QH: 175 items, GT QH = 84.9M VND</li>
       </ul>
     </div>
     <div class="alert-card warning">
-      <div class="alert-title"><span class="ico">&#9888;</span> GSDR &mdash; GT QH tăng +20.4M, không tương xứng SL QH</div>
+      <div class="alert-title"><span class="ico">&#9888;</span> GT Quá Hạn bùng nổ: +70.6% MoM, đạt 529.3M (8.05%)</div>
       <ul>
-        <li>GSDR có 56 items QH (0.71% SL) nhưng GT QH = <span class="highlight-gold">71.99M VND (9.9% GT)</span></li>
-        <li>GT QH tăng từ 51.6M (T5) lên 72.0M (T6) &mdash; tăng +20.4M dù SL QH tăng ít (+34 items)</li>
-        <li>Trung bình giá trị mỗi item quá hạn GSDR: 1,285,536 VND/item &mdash; hàng đắt tiền</li>
-        <li>486 Revelation-VN (69.9M QH GT) là nguyên nhân chính &mdash; cần được ưu tiên xử lý</li>
+        <li>GT QH T7/2026 = 529.3M &mdash; <span class="highlight-gold">tăng +219.2M (+70.6%) chỉ trong 1 tháng</span></li>
+        <li>8.05% GT tổng &mdash; cao nhất năm 2026, vượt qua T4/2026 (6.2%)</li>
+        <li>4 nguyên nhân chính tăng GT QH: Ghost Story +~103.9M, JXM +67.7M, MLB mới +44.8M, Revelation-VN +8.5M</li>
+        <li>Tỷ lệ đơn giá item QH / tổng kho: 529.3M / 1,568 items = 337,533 VND/item QH vs 121,025 VND/item BQ &mdash; gấp 2.8 lần</li>
       </ul>
     </div>
     <div class="alert-card warning">
-      <div class="alert-title"><span class="ico">&#9888;</span> PRO &mdash; 100% tồn kho quá hạn qua nhiều tháng</div>
+      <div class="alert-title"><span class="ico">&#9632;</span> Nhóm JX cũ &mdash; kéo dài nhiều tháng, chưa có phương án dứt điểm</div>
       <ul>
-        <li>Toàn bộ 2 items Team PRO đều <span class="highlight-gold">quá hạn lưu kho</span> &mdash; không thay đổi từ T4/2026</li>
-        <li>GT: 10.07M VND, đơn giá 5,036,364 VND/item &mdash; hàng giá trị rất cao</li>
-        <li>Đã tồn đọng ít nhất 3 tháng (T4&rarr;T5&rarr;T6/2026) &mdash; cần quyết định ngay trong T7/2026</li>
-      </ul>
-    </div>
-    <div class="alert-card warning">
-      <div class="alert-title"><span class="ico">&#9632;</span> GT Quá Hạn tăng trở lại: +17.5M so T5</div>
-      <ul>
-        <li>GT QH T6/2026 = 310.1M VND &mdash; <span class="highlight-gold">tăng +17.5M (+6.0%) so T5/2026</span></li>
-        <li>Tỷ lệ GT QH / tổng: 5.01% &mdash; tăng từ 4.11% (T5) &mdash; xu hướng đáng lo ngại</li>
-        <li>Trong khi SL QH giảm &minus;20 items, GT QH lại tăng &mdash; phản ánh hàng đắt tiền mới vào danh sách QH (486 Revelation-VN, GSDR)</li>
-        <li>Trung bình 1 item QH = 427,789 VND, BQ toàn kho = 126,147 VND (gấp 3.4 lần)</li>
+        <li>003 JX2: <span class="highlight-gold">96.9% quá hạn</span> (31/32 items, GT QH 23.6M) &mdash; không đổi từ T6</li>
+        <li>004 JXF: <span class="highlight-gold">92.0% quá hạn</span> (23/25 items, GT QH 19.4M) &mdash; không đổi từ T6</li>
+        <li>162 JXCTC: 100% QH (30 items, 4.7M) &mdash; không đổi từ T6</li>
+        <li>452 JX1M: tăng từ 4 (T6) lên 45 items QH (16.7%, GT 15.2M) &mdash; đáng lo ngại</li>
+        <li>Tổng nhóm JX (003, 004, 162, 221, 610): >730 items QH, GT QH >131M &mdash; cần quyết định tiêu hủy hoặc trả NCC</li>
       </ul>
     </div>
   </div>
 </div>
 
-<!-- ══════════════ 7. TÍN HIỆU TÍCH CỰC ══════════════ -->
+<!-- ══════════════ 7. TÍN HIỆU TÍCH CỰC & KHUYẾN NGHỊ ══════════════ -->
 <div class="section">
   <div class="section-title">Tín Hiệu Tích Cực &amp; Khuyến Nghị <span>HÀNH ĐỘNG</span></div>
   <div class="grid-2">
     <div>
       <div class="alert-grid" style="grid-template-columns:1fr">
         <div class="alert-card ok">
-          <div class="alert-title"><span class="ico">&#10003;</span> SL QH tiếp tục xu hướng giảm: 725 items (1.48%)</div>
+          <div class="alert-title"><span class="ico">&#10003;</span> So cùng kỳ T7/2025: QH SL giảm &minus;57.6%</div>
           <ul>
-            <li>T6/2026: QH_SL = 725 items (1.48%) &mdash; tiếp tục giảm từ 745 (T5) xuống 725 (T6)</li>
-            <li>Giảm 80.1% so cùng kỳ T6/2025 (3,640 items, 11.8%)</li>
-            <li>Xu hướng giảm duy trì 6 tháng liên tiếp từ đỉnh T1/2026 (1,743 items)</li>
-            <li>Mặc dù GT QH tăng nhẹ, số lượng vật lý hàng QH tiếp tục được giải quyết</li>
+            <li>T7/2025: QH_SL = 3,698 items (10.9%). T7/2026: QH_SL = 1,568 items (2.88%)</li>
+            <li>Giảm &minus;2,130 items (&minus;57.6%) &mdash; cải thiện vượt bậc so cùng kỳ năm ngoái</li>
+            <li>SKU QH giảm từ 98 xuống 77 (&minus;21.4% YoY) &mdash; ít loại hàng bị quá hạn hơn</li>
+            <li>Dù tháng này QH tăng MoM, vẫn thấp hơn nhiều so cùng kỳ 2025</li>
           </ul>
         </div>
         <div class="alert-card ok">
-          <div class="alert-title"><span class="ico">&#10003;</span> Xuất kho mạnh sau đỉnh T5: &minus;9,684 items</div>
+          <div class="alert-title"><span class="ico">&#10003;</span> Tăng trưởng kinh doanh: GT kho tăng +75.1% YoY</div>
           <ul>
-            <li>Tổng SL giảm &minus;9,684 items (&minus;16.5%) trong T6 &mdash; xu hướng xuất kho tốt sau đỉnh nhập T5</li>
-            <li>PUBGM xuất kho mạnh nhất: &minus;4,502 items, CFL &minus;2,307, NTH &minus;1,188, Valorant &minus;1,088</li>
-            <li>GT kho giảm &minus;935M VND (&minus;13.1%) &mdash; giải phóng vốn hiệu quả</li>
+            <li>GT T7/2026 = 6.578 tỷ vs T7/2025 = 3.757 tỷ &mdash; tăng +2.821 tỷ (+75.1%)</li>
+            <li>SL tăng +60.9% YoY (54,357 vs 33,781 items) &mdash; portfolio sản phẩm mở rộng</li>
+            <li>SKU tăng từ 383 lên 587 (+204 mã, +53.3%) &mdash; đa dạng hóa danh mục</li>
           </ul>
         </div>
         <div class="alert-card ok">
-          <div class="alert-title"><span class="ico">&#10003;</span> GS2 cải thiện so T5/2025 cùng kỳ</div>
+          <div class="alert-title"><span class="ico">&#10003;</span> 5 Teams sạch QH: CTS, FGS, GDO, GSES, RES</div>
           <ul>
-            <li>T6/2025: GS2 QH = 3,640 tổng kho (97 SKU QH); T6/2026: toàn kho chỉ 725 items QH</li>
-            <li>So cùng kỳ, tỷ lệ QH đã giảm từ 11.8% xuống 1.48% &mdash; cải thiện vượt bậc</li>
-            <li>007 WJX cải thiện tích cực: từ 78.4% QH (T5) xuống 47.6% (T6)</li>
+            <li>Tổng 6,363 items / 421.1M VND (không item QH nào) &mdash; 11.7% tổng SL kho</li>
+            <li>GS3: 23,366 items (43% kho) chỉ 0.45% QH &mdash; quản lý tốt nhất tương đối</li>
+            <li>GS9: +1,085 items nhưng QH chỉ 0.6% (38 items) &mdash; kiểm soát tốt</li>
           </ul>
         </div>
         <div class="alert-card ok">
-          <div class="alert-title"><span class="ico">&#10003;</span> Phần lớn Teams kiểm soát QH tốt</div>
+          <div class="alert-title"><span class="ico">&#10003;</span> Ghost Story xuất kho mạnh: &minus;2,678 items (&minus;65.3%)</div>
           <ul>
-            <li>CTS, GDO, GSES, FGS, RES: 0% QH (tổng 7,212 items, 0 item quá hạn)</li>
-            <li>GS3: 0.48% QH dù có 18,163 items &mdash; kiểm soát tốt nhất khi xét tương đối</li>
-            <li>GS9: 0.08% QH SL &mdash; chỉ 4 items (mặc dù GT QH cao 40M do hàng đắt)</li>
+            <li>Ghost Story giảm từ 4,099 (T6) xuống 1,421 (T7) &mdash; xuất kho lớn nhất tháng</li>
+            <li>Các product khác xuất tốt: PUBGM&times;trong GS3, Roblox &minus;385, GSES &minus;524</li>
+            <li>Xu hướng xuất kho cho thấy hoạt động phân phối hàng vẫn đang diễn ra</li>
           </ul>
         </div>
       </div>
@@ -1182,57 +1155,63 @@
         <tbody>
           <tr>
             <td><span class="badge badge-red">KHẨN CẤP</span></td>
-            <td class="bold">Xử lý 486 Revelation-VN: 36 items QH, GT 69.9M &mdash; rủi ro tài chính lớn nhất T6</td>
-            <td>GSDR</td>
-            <td class="red-text bold">T7/2026</td>
+            <td class="bold">Xử lý JXM: 645 items QH (77.8%), GT 78.7M &mdash; toàn bộ 829 items đang tồn đọng</td>
+            <td>GS1</td>
+            <td class="red-text bold">T8/2026</td>
           </tr>
           <tr>
             <td><span class="badge badge-red">KHẨN CẤP</span></td>
-            <td class="bold">Xử lý dứt điểm: 162 JXCTC (100%), 003 JX2 (96.9%) &mdash; tiêu hủy hoặc trả NCC</td>
-            <td>GS1, GS2</td>
-            <td class="red-text bold">T7/2026</td>
+            <td class="bold">Xử lý Ghost Story: 171 items QH (GT 103.9M cao nhất) &mdash; xuất kho hoặc phân phối ngay</td>
+            <td>GSDR</td>
+            <td class="red-text bold">T8/2026</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">KHẨN CẤP</span></td>
+            <td class="bold">Xử lý Revelation-VN: 131 items QH (GT 78.4M), tăng từ 36 T6 &mdash; hàng giá trị cao</td>
+            <td>GSDR</td>
+            <td class="red-text bold">T8/2026</td>
           </tr>
           <tr>
             <td><span class="badge badge-red">CAO</span></td>
-            <td class="bold">Giải quyết PRO: 2 items, GT=10.07M, quá hạn liên tiếp từ T4/2026</td>
-            <td>PRO</td>
-            <td class="red-text">T7/2026</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-red">CAO</span></td>
-            <td>Đẩy xuất kho QH GS1: JXM (200 items, 24.1%) và TTL (103 items, 29.8%)</td>
-            <td>GS1</td>
-            <td class="red-text">T7/2026</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-red">CAO</span></td>
-            <td>Xử lý 004 JXF (92% QH, 23 items, GT 19.4M) và 007 WJX (47.6%, 10 items, GT 10.9M)</td>
+            <td class="bold">Xử lý MLB 650 (100% QH, 124 items, 44.8M) &mdash; mới vào QH hoàn toàn trong T7</td>
             <td>GS2</td>
-            <td class="red-text">T7/2026</td>
+            <td class="red-text">T8/2026</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">CAO</span></td>
+            <td>Dứt điểm nhóm JX cũ: JX2 003 (96.9%), JXCTC 162 (100%), JXF 004 (92%), WJX 007 (100%) &mdash; tiêu hủy hoặc trả NCC</td>
+            <td>GS1</td>
+            <td class="red-text">T8/2026</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">CAO</span></td>
+            <td>Quyết định PRO: 2 items, GT=10.1M, 100% QH liên tiếp từ T4/2026 (4 tháng)</td>
+            <td>PRO</td>
+            <td class="red-text">T8/2026</td>
           </tr>
           <tr>
             <td><span class="badge badge-gold">TRUNG BÌNH</span></td>
-            <td>Đánh giá hàng giá cao QH: GS9 (40.2M, 4 items) &mdash; trung bình 10M/item</td>
-            <td>GS9</td>
-            <td class="gold-text">T8/2026</td>
+            <td>Kiểm soát TTL (113): 103 items QH (30.2%, 16.6M) &mdash; không thay đổi từ T6</td>
+            <td>GS1</td>
+            <td class="gold-text">T9/2026</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-gold">TRUNG BÌNH</span></td>
+            <td>Đẩy xuất kho JX1M (452): tăng từ 4 lên 45 QH items (16.7%, 15.2M) &mdash; xu hướng tăng đáng lo</td>
+            <td>GS1</td>
+            <td class="gold-text">T9/2026</td>
           </tr>
           <tr>
             <td><span class="badge badge-blue">THEO DÕI</span></td>
-            <td>Giám sát tốc độ xuất kho các product SL lớn: Ghost Story (4,099), PUBGM (4,058), Valorant (8,825)</td>
-            <td>GS3</td>
+            <td>Giám sát 77 SKU QH &mdash; đặc biệt các mã có QH &gt; 90% (JX2, JXCTC, JXF, WJX, MLB)</td>
+            <td>Tất cả</td>
             <td>T8/2026</td>
           </tr>
           <tr>
-            <td><span class="badge badge-blue">THEO DÕI</span></td>
-            <td>Theo dõi 52 SKU QH &mdash; so sánh tháng sau xem mã nào được giải quyết hoàn toàn</td>
+            <td><span class="badge badge-green">MỤC TIÊU</span></td>
+            <td>Đưa GT QH xuống dưới 400M và SL QH dưới 1,000 items vào T9/2026</td>
             <td>Tất cả</td>
-            <td>T7/2026</td>
-          </tr>
-          <tr>
-            <td><span class="badge badge-green">BÌNH THƯỜNG</span></td>
-            <td>Duy trì xu hướng giảm QH: phấn đấu đưa GT QH xuống dưới 280M và SL QH dưới 650 items vào T8/2026</td>
-            <td>Tất cả</td>
-            <td>T8/2026</td>
+            <td>T9/2026</td>
           </tr>
         </tbody>
       </table>
@@ -1243,17 +1222,17 @@
 <!-- ══════════════ 8. TÓM TẮT ĐIỀU HÀNH ══════════════ -->
 <div class="section">
   <div class="summary-box">
-    <h3>Tóm Tắt Điều Hành &mdash; Tháng 6/2026</h3>
-    <p>Kho POSM HCM T6/2026 (snapshot 30/06) ghi nhận <span class="highlight">49,048 items (&minus;16.5% MoM)</span>, <span class="highlight">467 SKU</span> và giá trị tổng <span class="highlight">6.187 tỷ VND (&minus;13.1% MoM)</span>. Đây là tháng xuất kho tự nhiên sau đỉnh nhập T5/2026, với PUBGM (&minus;4,502), GS3 (&minus;6,316 net), CFL (&minus;2,307) và NTH (&minus;1,188) được xuất nhiều nhất. Hai team mới xuất hiện: CTS (4,265 items, hàng POSM giá thấp đơn giá 18,647 VND/item) và GDO (279 items). GSSEA biến mất khỏi snapshot T6.</p>
-    <p>Về quá hạn: <span class="highlight">SL QH tiếp tục giảm về 725 items (1.48%)</span> &mdash; xu hướng tích cực duy trì 6 tháng liên tiếp. So cùng kỳ T6/2025 (3,640 items, 11.8%), giảm đến 80.1%. Tuy nhiên, <span class="warning-text">GT QH tăng trở lại +17.5M lên 310.1M (5.01% tổng)</span> &mdash; báo hiệu hàng đắt tiền mới vào danh sách QH, đặc biệt 486 Revelation-VN của GSDR (69.9M QH GT, 36 items).</p>
-    <p>Vấn đề cần xử lý khẩn: <span class="warning-text">GS1 dẫn đầu QH 8.86% (401 items, GT 95.4M)</span> với JXM (200 items, 24.1%) và TTL (103 items, 29.8%) là 2 product chính. Nhóm JX cũ (162 JXCTC: 100%, 003 JX2: 96.9%, 004 JXF: 92%) chưa được xử lý triệt để sau nhiều tháng. PRO vẫn 100% QH từ T4/2026. Ưu tiên hàng đầu T7/2026: xử lý 486 Revelation-VN (GT QH cao nhất), dứt điểm nhóm JX và PRO trước khi GT thiệt hại leo thang.</p>
+    <h3>Tóm Tắt Điều Hành &mdash; Tháng 7/2026</h3>
+    <p>Kho POSM HCM T7/2026 (snapshot 31/07) ghi nhận <span class="highlight">54,357 items (+10.8% MoM)</span>, <span class="highlight">587 SKU (+25.7%)</span> và giá trị tổng <span class="highlight">6.578 tỷ VND (+6.3%)</span>. SL tăng chủ yếu do GS3 nhập thêm hàng: Valorant +2,094 (10,919 tổng), PUBGM +988 (5,046), NTH +788 (2,071), CFL +674 (1,657). Ghost Story xuất kho mạnh &minus;2,678 items (&minus;65.3%). So cùng kỳ T7/2025: SL +60.9%, GT +75.1% &mdash; phản ánh tăng trưởng kinh doanh vượt bậc.</p>
+    <p>Điểm lo ngại nghiêm trọng: <span class="warning-text">QH SL bùng nổ lên 1,568 items (2.88%) &mdash; tăng +116.3% vs T6/2026, phá vỡ chuỗi 6 tháng giảm liên tiếp. GT QH đạt 529.3M (8.05%) &mdash; cao nhất năm 2026</span>. 4 nguyên nhân chính: JXM tăng từ 200 lên 645 QH (+445 items trong 1 tháng &mdash; hàng tồn cũ vượt hạn lưu); Ghost Story từ 5 lên 171 (+166); Revelation-VN từ 36 lên 131 (+95); MLB 650 vào QH 100% với 124 items mới (44.8M).</p>
+    <p>Theo team: <span class="warning-text">GS1 dẫn đầu QH SL 16.8% (896 items, GT 183.7M)</span> với JXM là sản phẩm nguy hiểm nhất. <span class="warning-text">GSDR có GT QH 20.9% cao nhất (183.6M)</span> từ Ghost Story (103.9M) và Revelation-VN (78.4M). GS1 và GSDR cộng lại chiếm 69.4% tổng GT quá hạn toàn kho. Ưu tiên tuyệt đối T8/2026: xử lý khẩn JXM (78.7M), Ghost Story (103.9M), Revelation-VN (78.4M) và quyết định dứt điểm MLB + nhóm JX cũ trước khi GT thiệt hại leo thang thêm.</p>
   </div>
 </div>
 
 </div><!-- /container -->
 
 <div class="footer">
-  Báo cáo tạo ngày 06/07/2026 &nbsp;|&nbsp; Dữ liệu snapshot 30/06/2026 &nbsp;|&nbsp; Hệ thống BCTK Tồn Kho POSM HCM
+  Báo cáo tạo ngày 09/08/2026 &nbsp;|&nbsp; Dữ liệu snapshot 31/07/2026 &nbsp;|&nbsp; Hệ thống BCTK Tồn Kho POSM HCM
 </div>
 
 </body>
